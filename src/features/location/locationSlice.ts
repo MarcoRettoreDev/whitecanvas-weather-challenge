@@ -6,10 +6,13 @@ import { keyBy } from "lodash-es";
 
 export interface LocationSlice {
   fetchLocation: ({ queryCity }: IgetLocation) => void;
+  selectLocation: (id: number) => void;
+  toggleOpenSelector: () => void;
   selectedLocation: LocationTypes | null;
   locationData: Record<string, LocationTypes> | null;
   isLocationFetching: boolean;
   isLocationError: boolean;
+  openSelector: boolean;
 }
 
 export const createLocationSlice: StateCreator<
@@ -22,6 +25,7 @@ export const createLocationSlice: StateCreator<
   locationData: null,
   isLocationError: false,
   isLocationFetching: false,
+  openSelector: false,
 
   fetchLocation: async ({ queryCity }) => {
     try {
@@ -48,7 +52,18 @@ export const createLocationSlice: StateCreator<
   },
 
   selectLocation: (id: number) => {
-    set({ selectedLocation: get().locationData?.[id] ?? null });
-    return;
+    const location = get().locationData?.[id];
+    if (location) {
+      set({ selectedLocation: location });
+      const { lat, lon } = location;
+      console.log(lat, lon);
+      get().fetchWeather({ lat, lon });
+    } else {
+      set({ selectedLocation: null });
+    }
+  },
+
+  toggleOpenSelector: () => {
+    set({ openSelector: !get().openSelector });
   },
 });

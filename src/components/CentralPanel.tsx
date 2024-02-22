@@ -2,11 +2,13 @@ import { FC } from "react";
 import { MainBadge } from "./MainBadge";
 import { DetailBar } from "./DetailBar";
 import { InputSearchLocation } from "./InputSearchLocation";
+import { LocationSelector } from "./LocationSelector";
 
 export const CentralPanel: FC = () => {
   return (
     <div className="grid">
       <main className="grid__main">
+        <LocationSelector />
         <InputSearchLocation />
         <MainBadge />
       </main>

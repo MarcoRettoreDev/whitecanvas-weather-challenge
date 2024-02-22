@@ -2,12 +2,17 @@ import { FC, useState } from "react";
 import { deburr } from "lodash-es";
 import magnifyIcon from "../assets/svg/search.svg";
 import { useAppStore } from "../context/appStore";
+import usePreviousProps from "../hooks/usePreviousProps";
 
 export const InputSearchLocation: FC = () => {
-  const [searchedText, setSearchedText] = useState("");
+  const toggleOpenSelector = useAppStore((state) => state.toggleOpenSelector);
   const fetchLocation = useAppStore((state) => state.fetchLocation);
   const isLocationError = useAppStore((state) => state.isLocationError);
   const isLocationFetching = useAppStore((state) => state.isLocationFetching);
+
+  const [searchedText, setSearchedText] = useState("");
+  const previousValue = usePreviousProps(searchedText);
+  const hasInputChanged = previousValue !== searchedText;
 
   const sanitizeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -17,7 +22,11 @@ export const InputSearchLocation: FC = () => {
 
   const test = (a: React.KeyboardEvent<HTMLInputElement>) => {
     if (a.key === "Enter" || a.code === "13") {
-      fetchLocation({ queryCity: searchedText });
+      toggleOpenSelector();
+
+      if (hasInputChanged) {
+        fetchLocation({ queryCity: searchedText });
+      }
     }
   };
 
