@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 export interface IgetLocation {
   queryCity: string;
@@ -6,15 +6,12 @@ export interface IgetLocation {
 
 export const getLocation = async ({
   queryCity,
-}: IgetLocation): Promise<unknown> => {
-  const { data } = await axios<unknown>({
-    url: `${
+}: IgetLocation): Promise<AxiosResponse> => {
+  return axios.get(
+    `${
       import.meta.env.VITE_API_LOCATION_BASE_ENDPOINT
     }/direct?q=${queryCity}&limit=5&appid=${
       import.meta.env.VITE_API_LOCATION_KEY
-    }`,
-    method: "get",
-  });
-
-  return data;
+    }`
+  );
 };

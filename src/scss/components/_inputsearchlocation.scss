@@ -21,6 +21,10 @@
     &::placeholder {
       color: c.$grey;
     }
+
+    &:focus-visible {
+      outline: none;
+    }
   }
 
   &__icon {
