@@ -1,0 +1,32 @@
+@use "../globals/colors" as c;
+
+.inputsearchlocation {
+  display: flex;
+  position: relative;
+  align-items: center;
+  max-width: 125px;
+  margin-left: auto;
+
+  &__input {
+    color: c.$white;
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px c.$white solid;
+    padding-bottom: 2px;
+    font-size: smaller;
+
+    &::placeholder {
+      color: c.$grey;
+    }
+  }
+
+  &__icon {
+    width: 12px;
+    height: 12px;
+    margin-left: 0.1rem;
+    position: absolute;
+    left: 90%;
+    bottom: 20%;
+  }
+}

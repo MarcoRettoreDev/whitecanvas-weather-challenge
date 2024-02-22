@@ -1,0 +1,44 @@
+@use "../globals/breakpoints" as b;
+@use "../globals/colors" as c;
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0 auto;
+  max-width: map-get(b.$breakpoints-up, large);
+
+  background-image: url("../assets/images/rain.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @include b.breakpoint(large) {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  &__main,
+  &__sidebar {
+    padding: 1.2rem;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    height: 40vh;
+
+    @include b.breakpoint(medium) {
+      height: 50vh;
+    }
+
+    @include b.breakpoint(large) {
+      height: 100vh;
+    }
+  }
+
+  &__sidebar {
+    border-top: rgba(c.$white, 0.2) 5px solid;
+    height: 60vh;
+    min-height: 100%;
+    backdrop-filter: blur(12px);
+  }
+}

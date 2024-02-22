@@ -1,12 +1,54 @@
+@use "../globals//breakpoints" as b;
+
+$basefont: "Roboto", sans-serif;
+
 h1,
 h2,
 h3 {
   font-weight: 700;
   line-height: 1.1;
-  margin-top: 0;
-  color: $myColor;
+  margin: 0;
+}
+
+h1 {
+  font-weight: 400;
+  // 143, 120, 64
+  font-size: clamp(4rem, 17vw, 7.5rem);
+
+  @include b.breakpoint(medium) {
+    font-size: clamp(7.5rem, 5rem + 5vw, 8.9375rem);
+  }
+
+  @include b.breakpoint(large) {
+    font-size: 8.9375rem;
+  }
+}
+
+h2 {
+  font-weight: 400;
+
+  // 60, 48, 30
+  font-size: clamp(1.875rem, 8vw, 3rem);
+
+  @include b.breakpoint(medium) {
+    font-size: clamp(3rem, 1.75rem + 5vw, 3.75rem);
+  }
+
+  @include b.breakpoint(large) {
+    font-size: 3.75rem;
+  }
+}
+//todo: next here
+
+h3 {
+  font-weight: 400;
+  font-size: 2vw;
 }
 
 p {
+  font-size: 0.875rem;
+  @include b.breakpoint(medium) {
+    font-size: 1.125rem;
+  }
   margin-top: 0;
 }
