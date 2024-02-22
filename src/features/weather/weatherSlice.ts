@@ -2,7 +2,6 @@ import { StateCreator } from "zustand";
 import { TAppStore } from "../../context/appStore";
 import { IgetWeather, getWeather } from "./weather.service";
 import { TForecast } from "./weatherTypes";
-// import { keyBy } from "lodash-es";
 
 export interface WeatherSlice {
   fetchWeather: ({ lat, lon }: IgetWeather) => Promise<TForecast>;
@@ -19,6 +18,7 @@ export const createWeatherSlice: StateCreator<
 
   fetchWeather: async ({ lat, lon }) => {
     const data = await getWeather({ lat, lon });
+    console.log(data);
 
     if (data) {
       set({ weatherData: data });

@@ -49,3 +49,20 @@ export interface CurrentWeather {
   is_day: number;
   weathercode: number;
 }
+
+export interface WeatherData {
+  dayNumber: string;
+  averageTemp: string;
+  chanceToRain: string;
+  minTemp: number;
+  maxTemp: number;
+  wind: string;
+  weathercode: number;
+  humidity: number;
+}
+
+export interface TodayWeather {
+  title: string;
+  value: string | number;
+  icon: string;
+}

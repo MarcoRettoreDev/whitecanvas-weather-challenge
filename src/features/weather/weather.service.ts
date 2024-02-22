@@ -2,8 +2,8 @@ import axios from "axios";
 import { TForecast } from "./weatherTypes";
 
 export interface IgetWeather {
-  lat: string;
-  lon: string;
+  lat: number;
+  lon: number;
 }
 
 export const getWeather = async ({
@@ -13,7 +13,7 @@ export const getWeather = async ({
   const { data } = await axios<TForecast>({
     url: `${
       import.meta.env.VITE_API_FORECAST
-    }/forecast?latitude=${lat}&longitude=${lon}&daily=apparent_temperature_max,apparent_temperature_min,precipitation_probability_mean,weathercode,windspeed_10m_max&timezone=America%2FArgentina%2FRio_Gallegos&current_weather=true`,
+    }/forecast?latitude=${lat}&longitude=${lon}&daily=apparent_temperature_max,precipitation_probability_mean,apparent_temperature_min,precipitation_probability_mean,weathercode,windspeed_10m_max&timezone=America%2FArgentina%2FRio_Gallegos&current_weather=true`,
 
     method: "get",
   });

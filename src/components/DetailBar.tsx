@@ -1,45 +1,22 @@
 import { FC } from "react";
-import highTemperatureIcon from "../assets/svg/temperature-high.svg";
-import lowTemperatureIcon from "../assets/svg/temperature-low.svg";
-import humidityIcon from "../assets/svg/humidity.svg";
-import cloudIcon from "../assets/svg/cloudy.svg";
-import windIcon from "../assets/svg/wind.svg";
 
-const fakeData = [
-  {
-    text: "Temp max",
-    degree: 19,
-    icon: highTemperatureIcon,
-  },
-  {
-    text: "Temp min",
-    degree: 15,
-    icon: lowTemperatureIcon,
-  },
-  {
-    text: "Humadity",
-    degree: 58,
-    icon: humidityIcon,
-  },
-  {
-    text: "Cloudy",
-    degree: 86,
-    icon: cloudIcon,
-  },
-  {
-    text: "Wind",
-    degree: 5,
-    icon: windIcon,
-  },
-];
+import { weatherCurrentDaySelector } from "../context/selectors";
+import { useAppStore } from "../context/appStore";
 
 export const DetailBar: FC = () => {
+  const data = useAppStore((state) => weatherCurrentDaySelector(state));
+
   return (
     <div className="detailbar">
       <h3 className="detailbar__title">Weather Details...</h3>
       <h3 className="detailbar__subtitle">thunderstorm with light drizzle</h3>
-      {fakeData.map((item) => (
-        <DetailStats title={item.text} degree={item.degree} icon={item.icon} />
+      {data.map((item) => (
+        <DetailStats
+          key={item.title}
+          title={item.title}
+          value={item.value}
+          icon={item.icon}
+        />
       ))}
     </div>
   );
@@ -47,16 +24,16 @@ export const DetailBar: FC = () => {
 
 interface DetailStats {
   title: string;
-  degree: number;
-  icon?: string;
+  value: number | string;
+  icon: string | null;
 }
 
-const DetailStats: FC<DetailStats> = ({ title, degree, icon }) => {
+const DetailStats: FC<DetailStats> = ({ title, value, icon }) => {
   return (
     <div className="detailstats">
       <h3 className="detailstats__title">{title}</h3>
       <div className="detailstats__rightsection">
-        <p className="detailstats__rightsection_text">{degree}</p>
+        <p className="detailstats__rightsection_text">{value}</p>
         {icon ? (
           <div
             className="detailstats__rightsection_icon"
