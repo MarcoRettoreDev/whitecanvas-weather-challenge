@@ -14,7 +14,9 @@
     border: none;
     border-bottom: 1px c.$white solid;
     padding-bottom: 2px;
-    font-size: smaller;
+    // 20, 18 ,12
+    font-size: clamp(0.75rem, 0.2rem + 2vw, 1rem);
+    font-weight: 200;
 
     &::placeholder {
       color: c.$grey;

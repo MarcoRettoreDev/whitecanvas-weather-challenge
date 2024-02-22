@@ -6,10 +6,13 @@
   grid-template-columns: 1fr;
   margin: 0 auto;
   max-width: map-get(b.$breakpoints-up, large);
+  height: 100%;
 
-  background-image: url("../assets/images/rain.png");
-  background-position: center top;
-  background-repeat: no-repeat;
+  background: linear-gradient(
+      rgba($color: #000000, $alpha: 0.4),
+      rgba($color: #000000, $alpha: 0)
+    ),
+    url("../assets/images/rain.png") no-repeat center fixed;
   background-size: cover;
 
   @include b.breakpoint(large) {
