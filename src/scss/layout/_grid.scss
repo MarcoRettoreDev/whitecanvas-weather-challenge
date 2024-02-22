@@ -8,7 +8,7 @@
   max-width: map-get(b.$breakpoints-up, large);
 
   background-image: url("../assets/images/rain.png");
-  background-position: center;
+  background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -16,15 +16,11 @@
     grid-template-columns: 2fr 1fr;
   }
 
-  &__main,
-  &__sidebar {
-    padding: 1.2rem;
-  }
-
   &__main {
     display: flex;
     flex-direction: column;
-    height: 40vh;
+    height: 32vh;
+    padding: 1.3rem 0.5rem 1.3rem 1.3rem;
 
     @include b.breakpoint(medium) {
       height: 50vh;
@@ -36,9 +32,10 @@
   }
 
   &__sidebar {
+    padding: 1.5rem 1.9rem 2.3rem 2.8rem;
     border-top: rgba(c.$white, 0.2) 5px solid;
-    height: 60vh;
+    height: 68vh;
     min-height: 100%;
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(10px);
   }
 }

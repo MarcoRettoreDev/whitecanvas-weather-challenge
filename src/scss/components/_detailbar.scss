@@ -1,0 +1,18 @@
+@use "../globals//colors" as c;
+.detailbar {
+  height: 100%;
+  border-bottom: solid white 1px;
+  color: c.$white;
+
+  &__title {
+    text-align: center;
+    padding: 2.4rem 0rem 2rem;
+  }
+
+  &__subtitle {
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 400;
+    padding-bottom: 1rem;
+  }
+}
