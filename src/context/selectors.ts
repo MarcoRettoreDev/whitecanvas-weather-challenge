@@ -2,13 +2,18 @@ import { TodayWeather, WeatherData } from "../features/weather/weatherTypes";
 import { formatCurrentWeatherObject } from "../helpers/weatherHelper";
 import { TAppStore } from "./appStore";
 
+// ** LOCATIONS SELECTORS ** //
 export const getLocationSelector = (state: TAppStore) => {
   const data = state.locationData ? Object.values(state.locationData) : null;
   return data;
 };
 
-export const weatherCurrentDaySelector = (state: TAppStore): TodayWeather[] => {
+// ** WEATHER SELECTORS ** //
+export const weatherCurrentDaySelector = (
+  state: TAppStore
+): TodayWeather[] | null => {
   const data = weatherFiveDaysDataSelector(state);
+  if (!data) return null;
   const formattedData: TodayWeather[] = [];
   Object.entries(data[0]).forEach(([key, value]) => {
     const obj = formatCurrentWeatherObject(key, value);
@@ -20,9 +25,14 @@ export const weatherCurrentDaySelector = (state: TAppStore): TodayWeather[] => {
   return formattedData;
 };
 
+export const currentWeatherSelector = (state: TAppStore) => {
+  return state.weatherData?.current_weather;
+};
+
 export const weatherFiveDaysDataSelector = (
   state: TAppStore
-): WeatherData[] => {
+): WeatherData[] | null => {
+  if (!state.weatherData) return null;
   const windSpeedSufix = state.weatherData?.daily_units.windspeed_10m_max;
 
   const arrayWithDataFormatted: WeatherData[] = [];

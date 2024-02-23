@@ -10,7 +10,7 @@ export const DetailBar: FC = () => {
     <div className="detailbar">
       <h3 className="detailbar__title">Weather Details...</h3>
       <h3 className="detailbar__subtitle">thunderstorm with light drizzle</h3>
-      {data.map((item) => (
+      {data?.map((item) => (
         <DetailStats
           key={item.title}
           title={item.title}

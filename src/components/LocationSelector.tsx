@@ -35,15 +35,14 @@ export const LocationSelector: FC = () => {
 
   if (!isSelectorOpen) return null;
 
-  console.log(selectedItem);
-
   return (
-    <div className="locationselector">
+    <div className="locationselector" onClick={toggleOpenSelector}>
       <div className="locationselector__container">
         {locationData &&
           locationData.length > 0 &&
           locationData.map((data, i) => (
             <div
+              onClick={() => selectLocation(data.id)}
               ref={i === 0 ? focusRef : null}
               tabIndex={selectedItem === i ? 0 : -1}
               onKeyDown={(e) => handlePressKey(e, data.id)}
