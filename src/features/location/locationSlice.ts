@@ -56,7 +56,6 @@ export const createLocationSlice: StateCreator<
     if (location) {
       set({ selectedLocation: location });
       const { lat, lon } = location;
-      console.log(lat, lon);
       get().fetchWeather({ lat, lon });
     } else {
       set({ selectedLocation: null });

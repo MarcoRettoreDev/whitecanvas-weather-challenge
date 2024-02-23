@@ -10,6 +10,7 @@
 
   &__textwrapper {
     display: flex;
+    position: relative;
 
     flex-direction: column;
     align-items: flex-start;
@@ -28,5 +29,10 @@
       width: 3.4375rem;
       height: 3.4375rem;
     }
+  }
+
+  .spinner {
+    top: 78%;
+    left: 25%;
   }
 }

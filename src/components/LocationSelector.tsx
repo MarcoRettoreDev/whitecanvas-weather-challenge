@@ -1,11 +1,13 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { getLocationSelector } from "../context/selectors";
 import { useAppStore } from "../context/appStore";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 export const LocationSelector: FC = () => {
   const locationData = useAppStore((state) => getLocationSelector(state));
   const toggleOpenSelector = useAppStore((state) => state.toggleOpenSelector);
   const selectLocation = useAppStore((state) => state.selectLocation);
+  const isLocationFetching = useAppStore((state) => state.isLocationFetching);
   const isSelectorOpen = useAppStore((state) => state.openSelector);
   const [selectedItem, setSelectedItem] = useState<number | null>(null); // Track the index of the selected item
 
@@ -37,27 +39,33 @@ export const LocationSelector: FC = () => {
 
   return (
     <div className="locationselector" onClick={toggleOpenSelector}>
-      <div className="locationselector__container">
-        {locationData &&
-          locationData.length > 0 &&
-          locationData.map((data, i) => (
-            <div
-              onClick={() => selectLocation(data.id)}
-              ref={i === 0 ? focusRef : null}
-              tabIndex={selectedItem === i ? 0 : -1}
-              onKeyDown={(e) => handlePressKey(e, data.id)}
-              className={`locationselector__container__itemwrapper ${
-                selectedItem === i
-                  ? "locationselector__container__itemwrapper--selected"
-                  : ""
-              }`}>
-              <h4 className="locationselector__container__title">
-                {data.name}
-              </h4>
-              <span>{data.country}</span>
-            </div>
-          ))}
-      </div>
+      {isLocationFetching ? (
+        <div className="locationselector__spinner">
+          <LoadingSpinner />
+        </div>
+      ) : (
+        <div className="locationselector__container">
+          {locationData &&
+            locationData.length > 0 &&
+            locationData.map((data, i) => (
+              <div
+                onClick={() => selectLocation(data.id)}
+                ref={i === 0 ? focusRef : null}
+                tabIndex={selectedItem === i ? 0 : -1}
+                onKeyDown={(e) => handlePressKey(e, data.id)}
+                className={`locationselector__container__itemwrapper ${
+                  selectedItem === i
+                    ? "locationselector__container__itemwrapper--selected"
+                    : ""
+                }`}>
+                <h4 className="locationselector__container__title">
+                  {data.name}
+                </h4>
+                <span>{data.country}</span>
+              </div>
+            ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -3,24 +3,34 @@ import { FC } from "react";
 import { weatherCurrentDaySelector } from "../context/selectors";
 import { useAppStore } from "../context/appStore";
 import { InputSearchLocation } from "./InputSearchLocation";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 export const DetailBar: FC = () => {
   const data = useAppStore((state) => weatherCurrentDaySelector(state));
+  const isFetchingWeather = useAppStore((state) => state.isWeatherFetching);
 
   return (
     <div className="detailbar">
       <InputSearchLocation />
 
-      <h3 className="detailbar__title">Weather Details...</h3>
-      <h3 className="detailbar__subtitle">thunderstorm with light drizzle</h3>
-      {data?.map((item) => (
-        <DetailStats
-          key={item.title}
-          title={item.title}
-          value={item.value}
-          icon={item.icon}
-        />
-      ))}
+      {isFetchingWeather ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <h3 className="detailbar__title">Weather Details...</h3>
+          <h3 className="detailbar__subtitle">
+            thunderstorm with light drizzle
+          </h3>
+          {data?.map((item) => (
+            <DetailStats
+              key={item.title}
+              title={item.title}
+              value={item.value}
+              icon={item.icon}
+            />
+          ))}
+        </>
+      )}
     </div>
   );
 };
