@@ -2,12 +2,15 @@ import { FC } from "react";
 
 import { weatherCurrentDaySelector } from "../context/selectors";
 import { useAppStore } from "../context/appStore";
+import { InputSearchLocation } from "./InputSearchLocation";
 
 export const DetailBar: FC = () => {
   const data = useAppStore((state) => weatherCurrentDaySelector(state));
 
   return (
     <div className="detailbar">
+      <InputSearchLocation />
+
       <h3 className="detailbar__title">Weather Details...</h3>
       <h3 className="detailbar__subtitle">thunderstorm with light drizzle</h3>
       {data?.map((item) => (

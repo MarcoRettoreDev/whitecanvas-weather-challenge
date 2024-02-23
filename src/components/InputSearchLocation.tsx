@@ -31,10 +31,12 @@ export const InputSearchLocation: FC = () => {
   };
 
   if (isLocationFetching) {
+    //todo: loading component
     console.log("FETCHING");
   }
 
   if (isLocationError) {
+    //todo: display error component
     console.log("ERRRRORRR");
   }
 

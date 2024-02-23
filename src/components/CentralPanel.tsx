@@ -8,8 +8,8 @@ export const CentralPanel: FC = () => {
   return (
     <div className="grid">
       <main className="grid__main">
-        <LocationSelector />
         <InputSearchLocation />
+        <LocationSelector />
         <MainBadge />
       </main>
       <aside className="grid__sidebar">
