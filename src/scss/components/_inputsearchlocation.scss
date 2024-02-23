@@ -14,6 +14,10 @@
     margin-right: 0.1rem;
   }
 
+  @include b.breakpoint-up(large) {
+    max-width: none;
+  }
+
   &__input {
     font-family: t.$basefont;
     color: c.$white;
@@ -30,6 +34,8 @@
 
     @include b.breakpoint-up(large) {
       font-size: 1.25rem;
+      margin-top: 0.3rem;
+      padding: 0rem 0rem 0.8rem 0rem;
     }
 
     &::placeholder {
@@ -52,6 +58,13 @@
     @include b.breakpoint-up(medium) {
       width: 1.375rem;
       height: 1.375rem;
+    }
+
+    @include b.breakpoint-up(large) {
+      width: 1.75rem;
+      height: 1.75rem;
+      bottom: 30%;
+      left: 87%;
     }
   }
 }

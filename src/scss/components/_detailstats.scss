@@ -7,6 +7,10 @@
   justify-content: space-between;
   padding: 0.9rem 0rem;
 
+  @include b.breakpoint-up(large) {
+    padding: 1rem 0.9rem 0.7rem 0rem;
+  }
+
   &__title {
     color: c.$grey;
   }
@@ -27,6 +31,11 @@
       @include b.breakpoint-up(medium) {
         width: 1.25rem;
         height: 1.5rem;
+      }
+
+      @include b.breakpoint-up(large) {
+        width: 1.5rem;
+        height: 1.7rem;
       }
     }
   }

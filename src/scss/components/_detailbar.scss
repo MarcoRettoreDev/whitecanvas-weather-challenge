@@ -5,11 +5,16 @@
   height: 100%;
   border-bottom: solid rgba($color: c.$white, $alpha: 1) 1px;
   color: c.$white;
-
   padding: 0rem 0.5rem;
 
   @include b.breakpoint-up(medium) {
     padding: 0rem 1rem;
+  }
+
+  @include b.breakpoint-up(large) {
+    padding: 0rem 0rem 4.5rem;
+    margin: 0rem 1.5rem 0rem 0.8rem;
+    height: auto;
   }
 
   &__title {
@@ -19,6 +24,11 @@
     @include b.breakpoint-up(medium) {
       padding: 4rem 0rem 3.5rem;
     }
+
+    @include b.breakpoint-up(medium) {
+      padding: 2.6rem 0rem;
+      text-align: left;
+    }
   }
 
   &__subtitle {
@@ -26,6 +36,11 @@
     text-align: center;
     font-weight: 400;
     padding-bottom: 1rem;
+
+    @include b.breakpoint-up(large) {
+      padding: 0.8rem 0rem;
+      text-align: left;
+    }
   }
 
   .inputsearchlocation {
