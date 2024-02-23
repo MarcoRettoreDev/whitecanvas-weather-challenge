@@ -1,22 +1,36 @@
 @use "../globals/colors" as c;
+@use "../globals/breakpoints" as b;
+@use "../globals/typography" as t;
 
 .inputsearchlocation {
-  display: flex;
   position: relative;
-  align-items: center;
-  max-width: 125px;
+  width: 100%;
   margin-left: auto;
+  max-width: 7.125rem;
+  margin-right: 0.3rem;
+
+  @include b.breakpoint(medium) {
+    max-width: 19.0625rem;
+    margin-right: 0.1rem;
+  }
 
   &__input {
+    font-family: t.$basefont;
     color: c.$white;
     width: 100%;
     background: transparent;
     border: none;
     border-bottom: 1px c.$white solid;
-    padding-bottom: 2px;
-    // 20, 18 ,12
     font-size: clamp(0.75rem, 0.2rem + 2vw, 1rem);
-    font-weight: 200;
+    font-weight: 300;
+
+    @include b.breakpoint(medium) {
+      font-size: clamp(1.125rem, 0.8rem + 2vw, 1.25rem);
+    }
+
+    @include b.breakpoint(large) {
+      font-size: 1.25rem;
+    }
 
     &::placeholder {
       color: c.$grey;
@@ -28,11 +42,16 @@
   }
 
   &__icon {
-    width: 12px;
-    height: 12px;
+    width: 0.75rem;
+    height: 0.75rem;
     margin-left: 0.1rem;
     position: absolute;
     left: 90%;
     bottom: 20%;
+
+    @include b.breakpoint(medium) {
+      width: 1.375rem;
+      height: 1.375rem;
+    }
   }
 }

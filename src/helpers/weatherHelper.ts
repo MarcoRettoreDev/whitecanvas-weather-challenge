@@ -12,13 +12,13 @@ export const formatCurrentWeatherObject = (
     case "maxTemp":
       return {
         title: "Temp max",
-        value: value,
+        value: `${value}°`,
         icon: highTemperatureIcon,
       };
     case "minTemp":
       return {
         title: "Temp min",
-        value: value,
+        value: `${value}°`,
         icon: lowTemperatureIcon,
       };
     case "humidity":

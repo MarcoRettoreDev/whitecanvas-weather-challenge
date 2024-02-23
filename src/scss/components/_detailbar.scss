@@ -1,12 +1,24 @@
 @use "../globals//colors" as c;
+@use "../globals/breakpoints" as b;
+
 .detailbar {
   height: 100%;
-  border-bottom: solid white 1px;
+  border-bottom: solid rgba($color: c.$white, $alpha: 1) 1px;
   color: c.$white;
+
+  padding: 0rem 0.5rem;
+
+  @include b.breakpoint(medium) {
+    padding: 0rem 1rem;
+  }
 
   &__title {
     text-align: center;
-    padding: 2.4rem 0rem 2rem;
+    padding: 1.5rem 0rem 2rem;
+
+    @include b.breakpoint(medium) {
+      padding: 4rem 0rem 3.5rem;
+    }
   }
 
   &__subtitle {

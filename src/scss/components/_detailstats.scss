@@ -1,10 +1,11 @@
 @use "../globals/colors" as c;
+@use "../globals/breakpoints" as b;
 .detailstats {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0.95rem 0rem;
+  padding: 0.9rem 0rem;
 
   &__title {
     color: c.$grey;
@@ -17,11 +18,16 @@
     gap: 1.2rem;
 
     &_icon {
-      width: 16px;
-      height: 20px;
+      width: 1rem;
+      height: 1.25rem;
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
+
+      @include b.breakpoint(medium) {
+        width: 1.25rem;
+        height: 1.5rem;
+      }
     }
   }
 }

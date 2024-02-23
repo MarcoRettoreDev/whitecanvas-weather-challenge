@@ -21,10 +21,7 @@ export const MainBadge: FC = () => {
         <h2 className="mainbadge__textwrapper_city">
           {selectedLocation?.name}
         </h2>
-        <h4 className="mainbadge__textwrapper_datetime">
-          {/* 06:09 - Monday, 9 Sep '23 */}
-          {dateFormatted}
-        </h4>
+        <h4 className="mainbadge__textwrapper_datetime">{dateFormatted}</h4>
       </div>
       <img className="mainbadge__icon" src={fakeIcon}></img>
     </div>
