@@ -24,7 +24,7 @@
       background-position: center;
       background-size: contain;
 
-      @include b.breakpoint(medium) {
+      @include b.breakpoint-up(medium) {
         width: 1.25rem;
         height: 1.5rem;
       }

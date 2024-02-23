@@ -24,7 +24,7 @@
     width: 2.5rem;
     height: 2.5rem;
 
-    @include b.breakpoint(medium) {
+    @include b.breakpoint-up(medium) {
       width: 3.4375rem;
       height: 3.4375rem;
     }

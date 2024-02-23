@@ -8,7 +8,7 @@
 
   padding: 0rem 0.5rem;
 
-  @include b.breakpoint(medium) {
+  @include b.breakpoint-up(medium) {
     padding: 0rem 1rem;
   }
 
@@ -16,7 +16,7 @@
     text-align: center;
     padding: 1.5rem 0rem 2rem;
 
-    @include b.breakpoint(medium) {
+    @include b.breakpoint-up(medium) {
       padding: 4rem 0rem 3.5rem;
     }
   }
@@ -26,5 +26,11 @@
     text-align: center;
     font-weight: 400;
     padding-bottom: 1rem;
+  }
+
+  .inputsearchlocation {
+    @include b.breakpoint-up(large) {
+      display: block;
+    }
   }
 }

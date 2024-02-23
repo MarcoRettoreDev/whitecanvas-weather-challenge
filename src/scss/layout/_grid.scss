@@ -7,7 +7,6 @@
   grid-template-columns: 1fr;
   grid-template-rows: min-content;
   margin: 0 auto;
-  max-width: map-get(b.$breakpoints-up, large);
 
   background: linear-gradient(
       rgba($color: #000000, $alpha: 0.4),
@@ -16,13 +15,15 @@
     url("../assets/images/rain.png") no-repeat center fixed;
   background-size: cover;
 
-  @include b.breakpoint(medium) {
-    background: url("../assets/images/thunderstrom.png") no-repeat center fixed;
+  @include b.breakpoint-up(medium) {
+    background: url("../assets/images/thunderstrom.png") no-repeat center;
     background-size: cover;
   }
 
-  @include b.breakpoint(large) {
-    grid-template-columns: 2fr 1fr;
+  @include b.breakpoint-up(large) {
+    grid-template-columns: 63% 37%;
+    background: url("../assets/images/snow.png") no-repeat center fixed;
+    background-size: cover;
   }
 
   &__main {
@@ -31,24 +32,41 @@
     height: 32vh;
     padding: 1.2rem;
 
-    @include b.breakpoint(medium) {
+    @include b.breakpoint-up(medium) {
       height: 43vh;
       padding: 2rem 2rem 2.5rem 2rem;
     }
 
-    @include b.breakpoint(large) {
+    @include b.breakpoint-up(large) {
       height: 100vh;
+      padding: 4.8rem 6.5rem;
     }
   }
 
   &__sidebar {
     padding: 2.6rem;
-    border-top: rgba(c.$white, 0.2) 5px solid;
+    border-top: rgba(c.$white, 0.1) 5px solid;
     height: 100%;
     backdrop-filter: blur(10px);
 
-    @include b.breakpoint(medium) {
+    @include b.breakpoint-up(medium) {
       padding: 2.5rem 12rem;
+    }
+
+    @include b.breakpoint-up(large) {
+      padding: 3rem 8rem 1.5rem 1rem;
+      background: #000;
+
+      border-top: 0;
+      border-left: rgba(c.$white, 0.1) 5px solid;
+
+      margin-top: 0;
+    }
+  }
+
+  .inputsearchlocation {
+    @include b.breakpoint-up(large) {
+      display: none;
     }
   }
 }

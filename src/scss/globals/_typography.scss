@@ -1,4 +1,4 @@
-@use "../globals//breakpoints" as b;
+@use "../globals/breakpoints" as b;
 
 $basefont: "Roboto", sans-serif;
 
@@ -17,11 +17,11 @@ h1 {
   // 143, 120, 64
   font-size: clamp(4rem, 17vw, 7.5rem);
 
-  @include b.breakpoint(medium) {
+  @include b.breakpoint-up(medium) {
     font-size: clamp(7.5rem, 5rem + 5vw, 8.9375rem);
   }
 
-  @include b.breakpoint(large) {
+  @include b.breakpoint-up(large) {
     font-size: 8.9375rem;
   }
 }
@@ -31,11 +31,11 @@ h2 {
 
   font-size: clamp(1.875rem, 8vw, 3rem);
 
-  @include b.breakpoint(medium) {
+  @include b.breakpoint-up(medium) {
     font-size: clamp(3rem, 2rem + 2vw, 3.75rem);
   }
 
-  @include b.breakpoint(large) {
+  @include b.breakpoint-up(large) {
     font-size: 3.75rem;
   }
 }
@@ -47,7 +47,7 @@ h3 {
   //  18, 14
   font-size: clamp(0.875rem, 0.3rem + 2vw, 1.125rem);
 
-  @include b.breakpoint(medium) {
+  @include b.breakpoint-up(medium) {
     font-size: 1.125rem;
   }
 }
@@ -56,18 +56,18 @@ h4 {
   font-size: 0.625rem;
   font-weight: 300;
 
-  @include b.breakpoint(medium) {
+  @include b.breakpoint-up(medium) {
     font-size: clamp(1rem, 0.6rem + 2vw, 1.125rem);
   }
 
-  @include b.breakpoint(large) {
+  @include b.breakpoint-up(large) {
     font-size: 1.125rem;
   }
 }
 
 p {
   font-size: 0.875rem;
-  @include b.breakpoint(medium) {
+  @include b.breakpoint-up(medium) {
     font-size: 1.125rem;
   }
   margin: 0;
