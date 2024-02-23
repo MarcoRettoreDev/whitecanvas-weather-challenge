@@ -20,13 +20,17 @@ export const InputSearchLocation: FC = () => {
     setSearchedText(sanitized);
   };
 
-  const test = (a: React.KeyboardEvent<HTMLInputElement>) => {
+  const enterKeyHandler = (a: React.KeyboardEvent<HTMLInputElement>) => {
     if (a.key === "Enter" || a.code === "13") {
-      toggleOpenSelector();
+      dispatchQuery();
+    }
+  };
 
-      if (hasInputChanged) {
-        fetchLocation({ queryCity: searchedText });
-      }
+  const dispatchQuery = () => {
+    toggleOpenSelector();
+
+    if (hasInputChanged) {
+      fetchLocation({ queryCity: searchedText });
     }
   };
 
@@ -49,10 +53,15 @@ export const InputSearchLocation: FC = () => {
         placeholder="Search Location..."
         id=""
         value={searchedText}
-        onKeyDown={(e) => test(e)}
+        onKeyDown={(e) => enterKeyHandler(e)}
         onChange={(e) => sanitizeInput(e)}
       />
-      <img className="inputsearchlocation__icon" src={magnifyIcon} alt="" />
+      <img
+        className="inputsearchlocation__icon"
+        src={magnifyIcon}
+        alt=""
+        onClick={dispatchQuery}
+      />
     </div>
   );
 };
