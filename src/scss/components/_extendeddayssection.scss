@@ -1,7 +1,11 @@
 @use "../globals/colors" as c;
 .extendeddayssection {
   padding: 3rem 0rem 0rem;
-  color: c.$grey;
+  color: c.$white;
+
+  &_title {
+    padding-bottom: 2rem;
+  }
 
   &__rangewrapper {
     display: flex;
@@ -12,9 +16,11 @@
       padding: 0.5rem 0.7rem;
       background: rgba($color: #000000, $alpha: 0.3);
       border-radius: 0.3rem;
+      border: transparent solid 1px;
 
       &--selected {
-        background: rgba($color: #000000, $alpha: 0.6);
+        background: rgba($color: #000000, $alpha: 0.7);
+        border-color: rgba(255, 255, 255, 0.4);
       }
     }
   }
@@ -26,6 +32,7 @@
     gap: 0.3rem;
 
     &__infoitem {
+      color: c.$grey;
       display: flex;
       flex-direction: row;
       justify-content: space-between;

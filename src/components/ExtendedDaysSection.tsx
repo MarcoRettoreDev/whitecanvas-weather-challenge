@@ -40,6 +40,7 @@ export const ExtendedDaysSection: FC = () => {
   if (isFetchingData) return <LoadingSpinner />;
   return (
     <div className="extendeddayssection">
+      <h3 className="extendeddayssection_title">Extended forecast</h3>
       <div className="extendeddayssection__rangewrapper">
         {selectOptions.map((dayopt) => (
           <RangeOption
@@ -82,15 +83,13 @@ const RangeOption: FC<TRangeOption> = ({
   label,
   handleClick,
   selected,
-}) => {
-  return (
-    <div
-      className={`extendeddayssection__rangewrapper_rangeoption ${selected}`}
-      onClick={() => handleClick(value)}>
-      {label}
-    </div>
-  );
-};
+}) => (
+  <div
+    className={`extendeddayssection__rangewrapper_rangeoption ${selected}`}
+    onClick={() => handleClick(value)}>
+    {label}
+  </div>
+);
 
 type TInfoItem = {
   dayNumber: string;

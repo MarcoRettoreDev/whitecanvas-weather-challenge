@@ -28,6 +28,9 @@
 
     @include b.breakpoint-up(medium) {
       padding: 2.6rem 0rem;
+    }
+
+    @include b.breakpoint-up(large) {
       text-align: left;
     }
   }
