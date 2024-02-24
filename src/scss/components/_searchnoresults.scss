@@ -1,0 +1,9 @@
+@use "../globals/colors" as c;
+
+.searchnoresults {
+  padding: 3rem 0rem;
+  color: c.$white;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

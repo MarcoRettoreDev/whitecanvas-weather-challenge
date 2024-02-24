@@ -2,6 +2,7 @@ import { FC, useEffect, useRef, useState } from "react";
 import { getLocationSelector } from "../context/selectors";
 import { useAppStore } from "../context/appStore";
 import { LoadingSpinner } from "./LoadingSpinner";
+import { SearchNoResults } from "./SearchNoResults";
 
 export const LocationSelector: FC = () => {
   const locationData = useAppStore((state) => getLocationSelector(state));
@@ -45,10 +46,10 @@ export const LocationSelector: FC = () => {
         </div>
       ) : (
         <div className="locationselector__container">
-          {locationData &&
-            locationData.length > 0 &&
+          {locationData && locationData.length > 0 ? (
             locationData.map((data, i) => (
               <div
+                // todo: add mouse hover set --selected modifier class
                 key={data.id}
                 onClick={() => selectLocation(data.id)}
                 ref={i === 0 ? focusRef : null}
@@ -64,7 +65,10 @@ export const LocationSelector: FC = () => {
                 </h4>
                 <span>{data.country}</span>
               </div>
-            ))}
+            ))
+          ) : (
+            <SearchNoResults />
+          )}
         </div>
       )}
     </div>

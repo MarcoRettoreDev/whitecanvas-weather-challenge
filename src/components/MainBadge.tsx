@@ -24,7 +24,7 @@ export const MainBadge: FC = () => {
     <div className="mainbadge">
       {isWeatherFetching ? (
         <LoadingSpinner />
-      ) : (
+      ) : weatherData ? (
         <>
           <div className="mainbadge__degree">
             <h1 className="mainbadge__degree_text">
@@ -39,7 +39,7 @@ export const MainBadge: FC = () => {
           </div>
           <img className="mainbadge__icon" src={weatherObj.icon}></img>
         </>
-      )}
+      ) : null}
     </div>
   );
 };

@@ -38,6 +38,9 @@ export const ExtendedDaysSection: FC = () => {
   };
 
   if (isFetchingData) return <LoadingSpinner />;
+
+  if (!data) return null;
+
   return (
     <div className="extendeddayssection">
       <h3 className="extendeddayssection_title">Extended forecast</h3>

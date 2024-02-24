@@ -5,6 +5,7 @@ import { useAppStore } from "../context/appStore";
 import { InputSearchLocation } from "./InputSearchLocation";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { decodiFyWeatherCode } from "../helpers/weatherHelper";
+import { EmptyDataMessage } from "./EmptyDataMessage";
 
 export const DetailBar: FC = () => {
   const data = useAppStore((state) => weatherCurrentDaySelector(state));
@@ -22,7 +23,7 @@ export const DetailBar: FC = () => {
 
       {isFetchingWeather ? (
         <LoadingSpinner />
-      ) : (
+      ) : data ? (
         <>
           <h3 className="detailbar__title">Weather Details...</h3>
           <h3 className="detailbar__subtitle">{weatherObj.weatherDetail}</h3>
@@ -35,6 +36,8 @@ export const DetailBar: FC = () => {
             />
           ))}
         </>
+      ) : (
+        <EmptyDataMessage />
       )}
     </div>
   );
