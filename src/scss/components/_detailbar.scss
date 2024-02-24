@@ -6,6 +6,7 @@
   border-bottom: solid rgba($color: c.$white, $alpha: 1) 1px;
   color: c.$white;
   padding: 0rem 0.5rem;
+  overflow-y: auto;
 
   @include b.breakpoint-up(medium) {
     padding: 0rem 1rem;
