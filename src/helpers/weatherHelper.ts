@@ -68,6 +68,7 @@ import clearNightBackground from "../assets/images/night.png";
 type returnObj = {
   backgroundImg: string;
   icon: string;
+  weatherDetail: string;
 };
 
 export const decodiFyWeatherCode = (
@@ -78,12 +79,14 @@ export const decodiFyWeatherCode = (
   const baseObj: returnObj = {
     backgroundImg: "",
     icon: "",
+    weatherDetail: "",
   };
 
   switch (code) {
     // sunny - clear
     case 0:
     case 1: {
+      baseObj.weatherDetail = "Clear sky";
       baseObj.icon = is_day === 1 ? clearDayIcon : clearNightIcon;
       baseObj.backgroundImg =
         is_day === 1 ? clearDayBackground : clearNightBackground;
@@ -92,6 +95,7 @@ export const decodiFyWeatherCode = (
     // cloudy
     case 2:
     case 3: {
+      baseObj.weatherDetail = "Partly cloudy";
       baseObj.icon = cloudyIcon;
       baseObj.backgroundImg =
         is_day === 1 ? cloudyDayBackground : cloudyNightBackground;
@@ -100,35 +104,43 @@ export const decodiFyWeatherCode = (
     // mist-fog
     case 45:
     case 48: {
+      baseObj.weatherDetail = "Fog and depositing rime fog";
       baseObj.icon = mistIcon;
       baseObj.backgroundImg = mistBackground;
       break;
     }
     //snow
-    case 77:
-    case 71:
-    case 66:
-    case 73:
-    case 56:
-    case 75:
-    case 85:
     case 51:
     case 53:
     case 55:
+    case 56:
+    case 57: {
+      baseObj.weatherDetail = "Drizzle";
+      baseObj.icon = snowWeatherIcon;
+      baseObj.backgroundImg = snowWeatherBackground;
+      break;
+    }
+    case 66:
+    case 71:
+    case 73:
+    case 75:
+    case 77:
+    case 85:
     case 86: {
+      baseObj.weatherDetail = "Snow fall and snow showers";
       baseObj.icon = snowWeatherIcon;
       baseObj.backgroundImg = snowWeatherBackground;
       break;
     }
     // rain
-    case 57:
     case 61:
     case 63:
-    case 67:
     case 65:
+    case 67:
     case 80:
     case 81:
     case 82: {
+      baseObj.weatherDetail = "Rain and rain showers";
       baseObj.icon = rainIcon;
       baseObj.backgroundImg = rainBackground;
       break;
@@ -136,6 +148,7 @@ export const decodiFyWeatherCode = (
     case 95:
     case 96:
     case 99: {
+      baseObj.weatherDetail = "Thunderstorm";
       baseObj.icon = thunderstormIcon;
       baseObj.backgroundImg = thunderstromBackground;
       break;
