@@ -24,13 +24,13 @@ export const formatCurrentWeatherObject = (
     case "humidity":
       return {
         title: "Humidity",
-        value: value,
+        value: `${value}%`,
         icon: humidityIcon,
       };
     case "chanceToRain":
       return {
         title: "Cloudy",
-        value: value,
+        value: `${value}%`,
         icon: cloudIcon,
       };
     case "wind":
@@ -42,4 +42,112 @@ export const formatCurrentWeatherObject = (
     default:
       return null;
   }
+};
+
+import snowWeatherIcon from "../assets/svg/Snow.svg";
+import snowWeatherBackground from "../assets/images/snow.png";
+
+import cloudyIcon from "../assets/svg/Broken-Cloudy.svg";
+import cloudyDayBackground from "../assets/images/cloudy_day.png";
+import cloudyNightBackground from "../assets/images/cloudy_night.png";
+
+import mistIcon from "../assets/svg/mist.svg";
+import mistBackground from "../assets/images/mist.png";
+
+import thunderstormIcon from "../assets/svg/Thunderstorm.svg";
+import thunderstromBackground from "../assets/images/thunderstrom.png";
+
+import rainIcon from "../assets/svg/Shower-Rain&Sun.svg";
+import rainBackground from "../assets/images/rain.png";
+
+import clearDayIcon from "../assets/svg/Sunny.svg";
+import clearNightIcon from "../assets/svg/moon.svg";
+import clearDayBackground from "../assets/images/clear.png";
+import clearNightBackground from "../assets/images/night.png";
+
+type returnObj = {
+  backgroundImg: string;
+  icon: string;
+};
+
+export const decodiFyWeatherCode = (
+  code: number | undefined,
+  is_day: number | undefined
+): returnObj => {
+  // is_day= 0 false, 1 true
+  const baseObj: returnObj = {
+    backgroundImg: "",
+    icon: "",
+  };
+
+  switch (code) {
+    // sunny - clear
+    case 0:
+    case 1: {
+      baseObj.icon = is_day === 1 ? clearDayIcon : clearNightIcon;
+      baseObj.backgroundImg =
+        is_day === 1 ? clearDayBackground : clearNightBackground;
+      break;
+    }
+    // cloudy
+    case 2:
+    case 3: {
+      baseObj.icon = cloudyIcon;
+      baseObj.backgroundImg =
+        is_day === 1 ? cloudyDayBackground : cloudyNightBackground;
+      break;
+    }
+    // mist-fog
+    case 45:
+    case 48: {
+      baseObj.icon = mistIcon;
+      baseObj.backgroundImg = mistBackground;
+      break;
+    }
+    //snow
+    case 77:
+    case 71:
+    case 66:
+    case 73:
+    case 56:
+    case 75:
+    case 85:
+    case 51:
+    case 53:
+    case 55:
+    case 86: {
+      baseObj.icon = snowWeatherIcon;
+      baseObj.backgroundImg = snowWeatherBackground;
+      break;
+    }
+    // rain
+    case 57:
+    case 61:
+    case 63:
+    case 67:
+    case 65:
+    case 80:
+    case 81:
+    case 82: {
+      baseObj.icon = rainIcon;
+      baseObj.backgroundImg = rainBackground;
+      break;
+    }
+    case 95:
+    case 96:
+    case 99: {
+      baseObj.icon = thunderstormIcon;
+      baseObj.backgroundImg = thunderstromBackground;
+      break;
+    }
+
+    default: {
+      baseObj.backgroundImg =
+        is_day === 1 ? clearDayBackground : clearNightBackground;
+      baseObj.icon = is_day === 1 ? clearDayIcon : clearNightIcon;
+      break;
+    }
+  }
+
+  return baseObj;
 };

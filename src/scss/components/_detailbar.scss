@@ -44,6 +44,8 @@
   }
 
   .inputsearchlocation {
+    display: none;
+
     @include b.breakpoint-up(large) {
       display: block;
     }

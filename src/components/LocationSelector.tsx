@@ -49,6 +49,7 @@ export const LocationSelector: FC = () => {
             locationData.length > 0 &&
             locationData.map((data, i) => (
               <div
+                key={data.id}
                 onClick={() => selectLocation(data.id)}
                 ref={i === 0 ? focusRef : null}
                 tabIndex={selectedItem === i ? 0 : -1}

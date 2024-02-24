@@ -12,7 +12,7 @@ export const getLocationSelector = (state: TAppStore) => {
 export const weatherCurrentDaySelector = (
   state: TAppStore
 ): TodayWeather[] | null => {
-  const data = weatherFiveDaysDataSelector(state);
+  const data = weatherDaysDataSelector(state, 1);
   if (!data) return null;
   const formattedData: TodayWeather[] = [];
   Object.entries(data[0]).forEach(([key, value]) => {
@@ -29,16 +29,19 @@ export const currentWeatherSelector = (state: TAppStore) => {
   return state.weatherData?.current_weather;
 };
 
-export const weatherFiveDaysDataSelector = (
-  state: TAppStore
+export const weatherDaysDataSelector = (
+  state: TAppStore,
+  daysQuantity: number
 ): WeatherData[] | null => {
   if (!state.weatherData) return null;
+  // Todo: trim first day of the array
+
   const windSpeedSufix = state.weatherData?.daily_units.windspeed_10m_max;
 
   const arrayWithDataFormatted: WeatherData[] = [];
 
   state.weatherData?.daily.time.forEach((time, i) => {
-    if (i <= 5) {
+    if (i <= daysQuantity) {
       const dayObj = {};
       //@ts-expect-error TODO: type should be coming quickly
       dayObj.dayNumber = time;
@@ -48,37 +51,37 @@ export const weatherFiveDaysDataSelector = (
   });
 
   state.weatherData?.daily.apparent_temperature_max.forEach((max, i) => {
-    if (i <= 5) {
+    if (i <= daysQuantity) {
       arrayWithDataFormatted[i].maxTemp = Math.round(max);
     }
   });
 
   state.weatherData?.daily.apparent_temperature_min.forEach((min, i) => {
-    if (i <= 5) {
+    if (i <= daysQuantity) {
       arrayWithDataFormatted[i].minTemp = Math.round(min);
     }
   });
 
   state.weatherData?.daily.precipitation_probability_mean.forEach((rain, i) => {
-    if (i <= 5) {
-      arrayWithDataFormatted[i].chanceToRain = rain.toString() + "%";
+    if (i <= daysQuantity) {
+      arrayWithDataFormatted[i].chanceToRain = rain?.toString() ?? 0 + "%";
     }
   });
 
   state.weatherData?.daily.windspeed_10m_max.forEach((wind, i) => {
-    if (i <= 5) {
+    if (i <= daysQuantity) {
       arrayWithDataFormatted[i].wind = `${wind.toString()}${windSpeedSufix}`;
     }
   });
 
   state.weatherData?.daily.weathercode.forEach((code, i) => {
-    if (i <= 5) {
+    if (i <= daysQuantity) {
       arrayWithDataFormatted[i].weathercode = code;
     }
   });
 
   state.weatherData?.daily.precipitation_probability_mean.forEach((hum, i) => {
-    if (i <= 5) {
+    if (i <= daysQuantity) {
       arrayWithDataFormatted[i].humidity = hum;
     }
   });
