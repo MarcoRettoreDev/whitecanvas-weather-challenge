@@ -8,46 +8,50 @@ export interface TForecast {
   timezone: string;
   timezone_abbreviation: string;
   elevation: number;
+  current_weather_units: CurrentWeatherUnits;
+  current_weather: CurrentWeather;
   daily_units: DailyUnits;
   daily: Daily;
-  current_weather: CurrentWeather;
+}
+
+export interface CurrentWeather {
+  time: string;
+  interval: number;
+  temperature: number;
+  windspeed: number;
+  winddirection: number;
+  is_day: number;
+  weathercode: number;
+}
+
+export interface CurrentWeatherUnits {
+  time: string;
+  interval: string;
+  temperature: string;
+  windspeed: string;
+  winddirection: string;
+  is_day: string;
+  weathercode: string;
 }
 
 export interface Daily {
   time: string[];
+  uv_index_max: number[];
   apparent_temperature_max: number[];
   apparent_temperature_min: number[];
-  precipitation_probability_mean: number[];
+  precipitation_probability_mean: Array<number | null>;
   weathercode: number[];
   windspeed_10m_max: number[];
 }
 
 export interface DailyUnits {
   time: string;
+  uv_index_max: string;
   apparent_temperature_max: string;
   apparent_temperature_min: string;
   precipitation_probability_mean: string;
   weathercode: string;
   windspeed_10m_max: string;
-}
-
-export interface WeatherModal {
-  dayNumber: string;
-  averageTemp: string;
-  chanceToRain: string;
-  minTemp: number;
-  maxTemp: number;
-  wind: string;
-  weathercode: number;
-}
-
-export interface CurrentWeather {
-  time: string;
-  temperature: number;
-  windspeed: number;
-  winddirection: number;
-  is_day: number;
-  weathercode: number;
 }
 
 export interface WeatherData {
@@ -58,7 +62,7 @@ export interface WeatherData {
   maxTemp: number;
   wind: string;
   weathercode: number;
-  humidity: number;
+  humidity: string;
 }
 
 export interface TodayWeather {

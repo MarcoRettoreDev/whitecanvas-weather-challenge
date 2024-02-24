@@ -30,6 +30,7 @@ export const createLocationSlice: StateCreator<
   fetchLocation: async ({ queryCity }) => {
     try {
       set({ isLocationFetching: true, isLocationError: false });
+
       const { data } = await getLocation({ queryCity });
 
       if (data) {
@@ -40,7 +41,6 @@ export const createLocationSlice: StateCreator<
 
         set({
           locationData: keyBy(dataFormatted, "id"),
-          isLocationError: false,
         });
       }
     } catch (e) {

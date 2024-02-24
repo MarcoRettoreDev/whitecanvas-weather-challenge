@@ -62,9 +62,15 @@ export const weatherDaysDataSelector = (
     }
   });
 
-  state.weatherData?.daily.precipitation_probability_mean.forEach((rain, i) => {
+  state.weatherData?.daily.precipitation_probability_mean.forEach((hum, i) => {
     if (i <= daysQuantity) {
-      arrayWithDataFormatted[i].chanceToRain = rain?.toString() ?? 0 + "%";
+      arrayWithDataFormatted[i].humidity = hum?.toString() ?? 0 + "%";
+    }
+  });
+
+  state.weatherData?.daily.uv_index_max.forEach((uv, i) => {
+    if (i <= daysQuantity) {
+      arrayWithDataFormatted[i].chanceToRain = uv?.toFixed(0) ?? 0 + "%";
     }
   });
 
@@ -77,12 +83,6 @@ export const weatherDaysDataSelector = (
   state.weatherData?.daily.weathercode.forEach((code, i) => {
     if (i <= daysQuantity) {
       arrayWithDataFormatted[i].weathercode = code;
-    }
-  });
-
-  state.weatherData?.daily.precipitation_probability_mean.forEach((hum, i) => {
-    if (i <= daysQuantity) {
-      arrayWithDataFormatted[i].humidity = hum;
     }
   });
 
