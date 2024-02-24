@@ -13,16 +13,9 @@
   background-attachment: fixed;
   background-size: cover;
 
-  // @include b.breakpoint-up(medium) {
-  //   background: url("../assets/images/thunderstrom.png") no-repeat center;
-  //   background-size: cover;
-  // }
-
-  // @include b.breakpoint-up(large) {
-  //   grid-template-columns: 63% 37%;
-  //   background: url("../assets/images/snow.png") no-repeat center fixed;
-  //   background-size: cover;
-  // }
+  @include b.breakpoint-up(large) {
+    grid-template-columns: auto 1fr;
+  }
 
   &__main {
     display: flex;
@@ -54,11 +47,16 @@
 
     @include b.breakpoint-up(large) {
       padding: 3rem 6rem 1.5rem 1.5rem;
-
       border-top: 0;
       border-left: rgba(c.$white, 0.1) 5px solid;
 
       margin-top: 0;
+
+      position: fixed;
+      width: 37vw;
+      overflow-y: scroll;
+      top: 0;
+      right: 0;
     }
   }
 

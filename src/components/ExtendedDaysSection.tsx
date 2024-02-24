@@ -5,6 +5,8 @@ import {
   decodiFyWeatherCode,
   formatCurrentWeatherObject,
 } from "../helpers/weatherHelper";
+import { LoadingSpinner } from "./LoadingSpinner";
+import { format } from "date-fns";
 
 const selectOptions = [
   {
@@ -26,6 +28,7 @@ const selectOptions = [
 
 export const ExtendedDaysSection: FC = () => {
   const [selectedOption, setSelectedOption] = useState<number>(5);
+  const isFetchingData = useAppStore((state) => state.isWeatherFetching);
   const data = useAppStore((state) =>
     weatherDaysDataSelector(state, selectedOption)
   );
@@ -34,8 +37,7 @@ export const ExtendedDaysSection: FC = () => {
     setSelectedOption(value);
   };
 
-  console.log(selectOptions, data);
-
+  if (isFetchingData) return <LoadingSpinner />;
   return (
     <div className="extendeddayssection">
       <div className="extendeddayssection__rangewrapper">
@@ -112,6 +114,7 @@ const InfoItem: FC<TInfoItem> = ({
   );
   const maxTempData = formatCurrentWeatherObject("maxTemp", maxTemp);
   const minTempData = formatCurrentWeatherObject("minTemp", minTemp);
+  const dateFomrmatted = format(new Date(dayNumber), "EEEE d, MMM");
 
   return (
     <div className="extendeddayssection__rangeshow__infoitem">
@@ -121,7 +124,7 @@ const InfoItem: FC<TInfoItem> = ({
           src={icon}
           alt=""
         />
-        <h3>{dayNumber}</h3>
+        <h3>{dateFomrmatted}</h3>
       </div>
 
       <div className="extendeddayssection__rangeshow__infoitem__rightwrapper">

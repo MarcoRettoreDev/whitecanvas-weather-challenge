@@ -1,5 +1,4 @@
 import { FC } from "react";
-import fakeIcon from "../assets/svg/cloudy.svg";
 import { useAppStore } from "../context/appStore";
 import { currentWeatherSelector } from "../context/selectors";
 import { format } from "date-fns";
@@ -27,9 +26,11 @@ export const MainBadge: FC = () => {
         <LoadingSpinner />
       ) : (
         <>
-          <h1 className="mainbadge__degree">
-            {currentWeather?.temperature.toFixed(0)}°
-          </h1>
+          <div className="mainbadge__degree">
+            <h1 className="mainbadge__degree_text">
+              {currentWeather?.temperature.toFixed(0)}°
+            </h1>
+          </div>
           <div className="mainbadge__textwrapper">
             <h2 className="mainbadge__textwrapper_city">
               {selectedLocation?.name}

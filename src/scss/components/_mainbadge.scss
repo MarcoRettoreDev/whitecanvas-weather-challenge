@@ -8,6 +8,25 @@
   align-items: center;
   gap: 0.8rem;
 
+  &__degree {
+    width: 5.375rem;
+    height: 4.6875rem;
+
+    @include b.breakpoint-up(medium) {
+      width: 10.0625rem;
+      height: 8.8125rem;
+    }
+
+    @include b.breakpoint-up(large) {
+      width: 12rem;
+      height: 10.5rem;
+    }
+
+    &_text {
+      text-align: right;
+    }
+  }
+
   &__textwrapper {
     display: flex;
     position: relative;
@@ -15,6 +34,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    // padding-bottom: 2rem;
 
     &_city {
       text-transform: capitalize;
@@ -24,10 +44,16 @@
   &__icon {
     width: 2.5rem;
     height: 2.5rem;
+    // margin-bottom: 2rem;
 
     @include b.breakpoint-up(medium) {
       width: 3.4375rem;
       height: 3.4375rem;
+    }
+
+    @include b.breakpoint-up(large) {
+      width: 4.375rem;
+      height: 4.375rem;
     }
   }
 
