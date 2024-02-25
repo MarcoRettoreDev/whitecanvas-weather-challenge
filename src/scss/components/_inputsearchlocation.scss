@@ -54,6 +54,7 @@
     position: absolute;
     left: 90%;
     bottom: 20%;
+    cursor: pointer;
 
     @include b.breakpoint-up(medium) {
       width: 1.375rem;
