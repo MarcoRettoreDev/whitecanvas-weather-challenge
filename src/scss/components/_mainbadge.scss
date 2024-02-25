@@ -58,7 +58,17 @@
   }
 
   .spinner {
-    top: 78%;
+    top: 20%;
     left: 25%;
+
+    @include b.breakpoint-up(medium) {
+      top: 30%;
+      left: 25%;
+    }
+
+    @include b.breakpoint-up(large) {
+      top: 78%;
+      left: 25%;
+    }
   }
 }
