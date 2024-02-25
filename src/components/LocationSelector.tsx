@@ -12,7 +12,7 @@ export const LocationSelector: FC = () => {
   const isSelectorOpen = useAppStore((state) => state.openSelector);
   const [selectedItem, setSelectedItem] = useState<number | null>(null); // Track the index of the selected item
 
-  const focusRef = useRef(null);
+  const focusRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (locationData && selectedItem === null) {
@@ -22,7 +22,7 @@ export const LocationSelector: FC = () => {
   }, [locationData, selectedItem]);
 
   const handlePressKey = (e: React.KeyboardEvent, id: number) => {
-    if (e.code === "ArrowDown" && selectedItem !== null) {
+    if (e.code === "ArrowDown" && selectedItem !== null && locationData) {
       setSelectedItem((prev) =>
         prev !== null && prev < locationData.length - 1 ? prev + 1 : prev
       );
