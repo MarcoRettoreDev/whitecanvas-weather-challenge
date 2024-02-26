@@ -27,14 +27,16 @@ export const DetailBar: FC = () => {
         <>
           <h3 className="detailbar__title">Weather Details...</h3>
           <h3 className="detailbar__subtitle">{weatherObj.weatherDetail}</h3>
-          {data?.map((item) => (
-            <DetailStats
-              key={item.title}
-              title={item.title}
-              value={item.value}
-              icon={item.icon}
-            />
-          ))}
+          <div className="detailbar__detailstats">
+            {data?.map((item) => (
+              <DetailStats
+                key={item.title}
+                title={item.title}
+                value={item.value}
+                icon={item.icon}
+              />
+            ))}
+          </div>
         </>
       ) : (
         <EmptyDataMessage />
@@ -51,13 +53,15 @@ interface DetailStats {
 
 const DetailStats: FC<DetailStats> = ({ title, value, icon }) => {
   return (
-    <div className="detailstats">
-      <h3 className="detailstats__title">{title}</h3>
-      <div className="detailstats__rightsection">
-        <p className="detailstats__rightsection_text">{value}</p>
+    <div className="detailbar__detailstats__item">
+      <h3 className="detailbar__detailstats__item_title">{title}</h3>
+      <div className="detailbar__detailstats__item__rightsection">
+        <p className="detailbar__detailstats__item__rightsection_text">
+          {value}
+        </p>
         {icon ? (
           <div
-            className="detailstats__rightsection_icon"
+            className="detailbar__detailstats__item__rightsection_icon"
             style={{ backgroundImage: `url(${icon})` }}></div>
         ) : null}
       </div>

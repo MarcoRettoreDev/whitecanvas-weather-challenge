@@ -6,7 +6,7 @@
   position: relative;
   width: 100%;
   margin-left: auto;
-  max-width: 7.125rem;
+  max-width: 7.55rem;
   margin-right: 0.3rem;
 
   @include b.breakpoint-up(medium) {
@@ -28,6 +28,8 @@
     font-size: clamp(0.75rem, 0.2rem + 2vw, 1rem);
     font-weight: 300;
 
+    padding: 0rem 0rem 0.2rem 0rem;
+
     @include b.breakpoint-up(medium) {
       font-size: clamp(1.125rem, 0.8rem + 2vw, 1.25rem);
     }
@@ -35,7 +37,7 @@
     @include b.breakpoint-up(large) {
       font-size: 1.25rem;
       margin-top: 0.3rem;
-      padding: 0rem 0rem 0.8rem 0rem;
+      padding-bottom: 0.8rem;
     }
 
     &::placeholder {
@@ -52,7 +54,7 @@
     height: 0.75rem;
     margin-left: 0.1rem;
     position: absolute;
-    left: 90%;
+    left: 89%;
     bottom: 20%;
     cursor: pointer;
 
