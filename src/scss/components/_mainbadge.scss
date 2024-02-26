@@ -25,6 +25,11 @@
     &_text {
       text-align: right;
       line-height: 1.1;
+      letter-spacing: -0.4375rem;
+
+      @include b.breakpoint-up(large) {
+        line-height: 1.15;
+      }
     }
   }
 
@@ -33,6 +38,11 @@
     align-items: center;
     gap: 0.6rem;
 
+    @include b.breakpoint-up(large) {
+      align-items: end;
+      gap: 1.6rem;
+    }
+
     &__textwrapper {
       display: flex;
       position: relative;
@@ -40,8 +50,13 @@
       align-items: flex-start;
       justify-content: center;
 
+      @include b.breakpoint-up(large) {
+        margin-bottom: 0.05rem;
+      }
+
       &_city {
         text-transform: capitalize;
+        letter-spacing: 0.02rem;
       }
     }
 

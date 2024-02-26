@@ -1,4 +1,5 @@
-@use "../globals//colors" as c;
+@use "../globals/colors" as c;
+
 $spinner: c.$white;
 $background: rgba(
   $color: #000000,

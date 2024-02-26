@@ -38,12 +38,15 @@
 
     @include b.breakpoint-up(large) {
       font-size: 1.25rem;
+
       margin-top: 0.3rem;
-      padding-bottom: 0.8rem;
+      padding-bottom: 0.7rem;
+      padding-right: 0.8rem;
     }
 
     &::placeholder {
       color: c.$grey;
+      letter-spacing: 0.01rem;
     }
 
     &:focus-visible {
@@ -69,8 +72,8 @@
     @include b.breakpoint-up(large) {
       width: 1.75rem;
       height: 1.75rem;
-      bottom: 30%;
-      left: 87%;
+      bottom: 33%;
+      left: 87.5%;
     }
   }
 }

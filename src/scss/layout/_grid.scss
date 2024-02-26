@@ -30,7 +30,7 @@
 
     @include b.breakpoint-up(large) {
       height: 100vh;
-      padding: 5rem 7rem;
+      padding: 5rem 0rem 5rem 7.3rem;
     }
   }
 

@@ -58,7 +58,7 @@ h4 {
   font-weight: 300;
 
   @include b.breakpoint-up(medium) {
-    font-size: clamp(1rem, 0.6rem + 2vw, 1.125rem);
+    font-size: clamp(1rem, 0.5rem + 1vw, 1.125rem);
   }
 
   @include b.breakpoint-up(large) {

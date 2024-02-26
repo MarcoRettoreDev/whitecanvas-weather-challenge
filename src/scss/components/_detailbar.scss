@@ -1,4 +1,4 @@
-@use "../globals//colors" as c;
+@use "../globals/colors" as c;
 @use "../globals/breakpoints" as b;
 
 .detailbar {
@@ -13,8 +13,8 @@
   }
 
   @include b.breakpoint-up(large) {
-    padding: 0rem 0rem 4.5rem;
-    margin: 0rem 1.5rem 0rem 0.8rem;
+    padding: 0rem 0rem 5rem;
+    margin: 0rem 1.6rem 0rem 0.8rem;
     height: auto;
   }
 
@@ -28,6 +28,8 @@
 
     @include b.breakpoint-up(large) {
       text-align: left;
+      font-weight: 300;
+      padding-top: 2.65rem;
     }
   }
 
@@ -42,7 +44,7 @@
     }
 
     @include b.breakpoint-up(large) {
-      padding: 0.8rem 0rem;
+      padding: 0rem;
       text-align: left;
     }
   }
@@ -67,14 +69,23 @@
       gap: 1.85rem;
     }
 
+    @include b.breakpoint-up(large) {
+      padding: 2rem 0.75rem 0rem 0rem;
+      gap: 1.7rem;
+    }
+
     &__item {
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
 
-      &__title {
+      &_title {
         color: c.$grey;
+
+        @include b.breakpoint-up(large) {
+          font-weight: 300;
+        }
       }
 
       &__rightsection {
