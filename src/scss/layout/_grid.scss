@@ -30,7 +30,7 @@
 
     @include b.breakpoint-up(large) {
       height: 100vh;
-      padding: 5rem 0rem 5rem 7.3rem;
+      padding: 0rem 0rem 5rem 7rem;
     }
   }
 
@@ -53,8 +53,7 @@
       margin-top: 0;
 
       position: fixed;
-      width: 37vw;
-      overflow-y: scroll;
+      width: 36.9vw;
       top: 0;
       right: 0;
     }

@@ -8,6 +8,10 @@
   align-items: center;
   gap: 1.1rem;
 
+  @include b.breakpoint-up(large) {
+    gap: 1.15rem;
+  }
+
   &__degree {
     width: 5.375rem;
     height: 4.6875rem;
@@ -29,6 +33,7 @@
 
       @include b.breakpoint-up(large) {
         line-height: 1.15;
+        letter-spacing: -0.5rem;
       }
     }
   }
@@ -45,8 +50,7 @@
     }
 
     @include b.breakpoint-up(large) {
-      align-items: end;
-      gap: 1.6rem;
+      gap: 1.7rem;
     }
 
     &__textwrapper {
@@ -61,7 +65,7 @@
       }
 
       @include b.breakpoint-up(large) {
-        margin-bottom: 0.05rem;
+        margin-bottom: 0.3rem;
       }
 
       &_city {
@@ -71,6 +75,10 @@
 
         @include b.breakpoint-up(medium) {
           line-height: 1.05;
+        }
+
+        @include b.breakpoint-up(large) {
+          line-height: 1.25;
         }
       }
 
@@ -92,6 +100,7 @@
       @include b.breakpoint-up(large) {
         width: 4.375rem;
         height: 4.375rem;
+        margin-top: 1.1875rem;
       }
     }
   }

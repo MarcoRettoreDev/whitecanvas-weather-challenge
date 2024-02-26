@@ -14,7 +14,7 @@
   }
 
   @include b.breakpoint-up(large) {
-    max-width: none;
+    max-width: 23.1875rem;
   }
 
   &__input {
@@ -31,7 +31,6 @@
 
     @include b.breakpoint-up(medium) {
       font-size: clamp(1.125rem, 0.2rem + 2vw, 1.25rem);
-      // padding-left: 0.1rem;
       padding-bottom: 0.2rem;
     }
 
@@ -71,8 +70,8 @@
     @include b.breakpoint-up(large) {
       width: 1.75rem;
       height: 1.75rem;
-      bottom: 33%;
-      left: 87.5%;
+      bottom: 31%;
+      left: 88%;
     }
   }
 }
