@@ -6,7 +6,7 @@
   color: c.$white;
   display: flex;
   align-items: center;
-  gap: 0.9rem;
+  gap: 1.1rem;
 
   &__degree {
     width: 5.375rem;
@@ -36,7 +36,8 @@
   &__info {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.2rem;
+    margin-bottom: 2px;
 
     @include b.breakpoint-up(large) {
       align-items: end;
@@ -56,7 +57,7 @@
 
       &_city {
         text-transform: capitalize;
-        letter-spacing: 0.02rem;
+        line-height: 0.9;
       }
     }
 

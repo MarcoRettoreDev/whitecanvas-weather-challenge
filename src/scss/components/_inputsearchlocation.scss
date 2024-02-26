@@ -6,8 +6,7 @@
   position: relative;
   width: 100%;
   margin-left: auto;
-  max-width: 7.55rem;
-  margin-right: 0.3rem;
+  max-width: 7.8125rem;
 
   @include b.breakpoint-up(medium) {
     max-width: 19.2625rem;
@@ -28,7 +27,7 @@
     font-size: clamp(0.75rem, 0.2rem + 2vw, 1rem);
     font-weight: 300;
 
-    padding: 0rem 0rem 0.2rem 0rem;
+    padding: 0rem 0rem 0.25rem 0rem;
 
     @include b.breakpoint-up(medium) {
       font-size: clamp(1.125rem, 0.2rem + 2vw, 1.25rem);
@@ -57,10 +56,9 @@
   &__icon {
     width: 0.75rem;
     height: 0.75rem;
-    margin-left: 0.1rem;
     position: absolute;
-    left: 89%;
-    bottom: 20%;
+    left: 88%;
+    bottom: 19.6%;
     cursor: pointer;
 
     @include b.breakpoint-up(medium) {
