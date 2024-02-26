@@ -156,7 +156,7 @@ export const decodiFyWeatherCode = (
 
     default: {
       baseObj.backgroundImg =
-        is_day === 1 ? clearDayBackground : clearNightBackground;
+        is_day === 1 ? cloudyDayBackground : cloudyDayBackground;
       baseObj.icon = is_day === 1 ? clearDayIcon : clearNightIcon;
       break;
     }
