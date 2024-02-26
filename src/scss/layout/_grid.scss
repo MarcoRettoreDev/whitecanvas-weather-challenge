@@ -24,8 +24,8 @@
     padding: 1rem 1.3rem 1.4rem 0.9rem;
 
     @include b.breakpoint-up(medium) {
-      height: 43vh;
-      padding: 2rem 2rem 2.2rem 2.2rem;
+      height: 42.5vh;
+      padding: 1.9rem 2.4rem 2rem 2rem;
     }
 
     @include b.breakpoint-up(large) {

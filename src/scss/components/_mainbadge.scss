@@ -39,6 +39,11 @@
     gap: 0.2rem;
     margin-bottom: 2px;
 
+    @include b.breakpoint-up(medium) {
+      gap: 1.1rem;
+      margin-bottom: 0px;
+    }
+
     @include b.breakpoint-up(large) {
       align-items: end;
       gap: 1.6rem;
@@ -51,6 +56,10 @@
       align-items: flex-start;
       justify-content: center;
 
+      @include b.breakpoint-up(medium) {
+        margin-bottom: 5px;
+      }
+
       @include b.breakpoint-up(large) {
         margin-bottom: 0.05rem;
       }
@@ -58,6 +67,15 @@
       &_city {
         text-transform: capitalize;
         line-height: 0.9;
+        text-align: left;
+
+        @include b.breakpoint-up(medium) {
+          line-height: 1.05;
+        }
+      }
+
+      &_datetime {
+        text-align: left;
       }
     }
 
@@ -68,6 +86,7 @@
       @include b.breakpoint-up(medium) {
         width: 3.4375rem;
         height: 3.4375rem;
+        margin-top: 2px;
       }
 
       @include b.breakpoint-up(large) {
