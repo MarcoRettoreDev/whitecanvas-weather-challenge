@@ -6,7 +6,7 @@
   color: c.$white;
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 0.9rem;
 
   &__degree {
     width: 5.375rem;
@@ -24,36 +24,40 @@
 
     &_text {
       text-align: right;
+      line-height: 1.1;
     }
   }
 
-  &__textwrapper {
+  &__info {
     display: flex;
-    position: relative;
+    align-items: center;
+    gap: 0.6rem;
 
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    // padding-bottom: 2rem;
+    &__textwrapper {
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
 
-    &_city {
-      text-transform: capitalize;
-    }
-  }
-
-  &__icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    // margin-bottom: 2rem;
-
-    @include b.breakpoint-up(medium) {
-      width: 3.4375rem;
-      height: 3.4375rem;
+      &_city {
+        text-transform: capitalize;
+      }
     }
 
-    @include b.breakpoint-up(large) {
-      width: 4.375rem;
-      height: 4.375rem;
+    &_icon {
+      width: 2.5rem;
+      height: 2.5rem;
+
+      @include b.breakpoint-up(medium) {
+        width: 3.4375rem;
+        height: 3.4375rem;
+      }
+
+      @include b.breakpoint-up(large) {
+        width: 4.375rem;
+        height: 4.375rem;
+      }
     }
   }
 

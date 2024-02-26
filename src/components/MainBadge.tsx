@@ -28,16 +28,20 @@ export const MainBadge: FC = () => {
         <>
           <div className="mainbadge__degree">
             <h1 className="mainbadge__degree_text">
-              {currentWeather?.temperature.toFixed(0)}°
+              {`${currentWeather?.temperature.toFixed(0)}°`}
             </h1>
           </div>
-          <div className="mainbadge__textwrapper">
-            <h2 className="mainbadge__textwrapper_city">
-              {selectedLocation?.name}
-            </h2>
-            <h4 className="mainbadge__textwrapper_datetime">{dateFormatted}</h4>
+          <div className="mainbadge__info">
+            <div className="mainbadge__info__textwrapper">
+              <h2 className="mainbadge__info__textwrapper_city">
+                {selectedLocation?.name}
+              </h2>
+              <h4 className="mainbadge__info__textwrapper_datetime">
+                {dateFormatted}
+              </h4>
+            </div>
+            <img className="mainbadge__info_icon" src={weatherObj.icon}></img>
           </div>
-          <img className="mainbadge__icon" src={weatherObj.icon}></img>
         </>
       ) : null}
     </div>
