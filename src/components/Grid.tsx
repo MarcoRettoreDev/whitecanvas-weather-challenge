@@ -20,7 +20,7 @@ export const Grid: FC = () => {
   const [isPresent, safeToRemove] = usePresence();
 
   const enterAnimation = async () => {
-    await animate(scope.current, { opacity: 1, transition: { duration: 0.5 } });
+    await animate(scope.current, { opacity: 1, transition: { duration: 1.2 } });
   };
 
   const exitAnimation = async () => {
