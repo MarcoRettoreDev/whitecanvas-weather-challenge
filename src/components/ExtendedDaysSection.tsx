@@ -7,6 +7,8 @@ import {
 } from "../helpers/weatherHelper";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { format } from "date-fns";
+import { AnimatePresence, Variants, motion } from "framer-motion";
+import { WeatherData } from "../features/weather/weatherTypes";
 
 const selectOptions = [
   {
@@ -26,6 +28,42 @@ const selectOptions = [
   },
 ];
 
+const infoitemAnimationVariants: Variants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: (i) => ({
+    opacity: 1,
+    transition: {
+      delay: 0.05 * i,
+    },
+  }),
+};
+
+const showmoreVariants: Variants = {
+  initial: {
+    y: -50,
+    opacity: 0,
+    transition: {
+      duration: 1,
+    },
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+    },
+  },
+  exit: {
+    y: -50,
+    opacity: 0,
+    transition: {
+      duration: 0.3,
+    },
+  },
+};
+
 export const ExtendedDaysSection: FC = () => {
   const [selectedOption, setSelectedOption] = useState<number>(5);
   const isFetchingData = useAppStore((state) => state.isWeatherFetching);
@@ -38,6 +76,7 @@ export const ExtendedDaysSection: FC = () => {
   };
 
   if (isFetchingData) return <LoadingSpinner />;
+  console.log(data);
 
   if (!data) return null;
 
@@ -60,14 +99,8 @@ export const ExtendedDaysSection: FC = () => {
         ))}
       </div>
       <div className="extendeddayssection__rangeshow">
-        {data?.map((item) => (
-          <InfoItem
-            dayNumber={item.dayNumber}
-            maxTemp={item.maxTemp}
-            minTemp={item.minTemp}
-            weathercode={item.weathercode}
-            chanceToRain={item.chanceToRain}
-          />
+        {data?.map((item, index) => (
+          <InfoItem weatherItem={item} i={index} />
         ))}
       </div>
     </div>
@@ -95,73 +128,126 @@ const RangeOption: FC<TRangeOption> = ({
 );
 
 type TInfoItem = {
-  dayNumber: string;
-  maxTemp: number;
-  minTemp: number;
-  weathercode: number;
-  chanceToRain: string;
+  weatherItem: WeatherData;
+  i: number;
 };
 
-const InfoItem: FC<TInfoItem> = ({
-  dayNumber,
-  maxTemp,
-  minTemp,
-  weathercode,
-  chanceToRain,
-}) => {
-  const { icon } = decodiFyWeatherCode(weathercode, 1);
+const InfoItem: FC<TInfoItem> = ({ weatherItem, i }) => {
+  const {
+    dayNumber,
+    maxTemp,
+    minTemp,
+    weathercode,
+    chanceToRain,
+    humidity,
+    wind,
+  } = weatherItem;
+
+  const [showMore, setShowMore] = useState<boolean>(false);
+
+  const { weatherDetail, icon } = decodiFyWeatherCode(weathercode, 1);
   const chanceToRainData = formatCurrentWeatherObject(
     "chanceToRain",
     chanceToRain
   );
   const maxTempData = formatCurrentWeatherObject("maxTemp", maxTemp);
   const minTempData = formatCurrentWeatherObject("minTemp", minTemp);
-  const dateFomrmatted = format(new Date(dayNumber), "EEEE d, MMM");
+  const humidityData = formatCurrentWeatherObject("humidity", humidity);
+  const windData = formatCurrentWeatherObject("wind", wind);
+  const dateFormatted = format(new Date(dayNumber), "EEEE d, MMM");
 
   return (
-    <div className="extendeddayssection__rangeshow__infoitem">
-      <div className="extendeddayssection__rangeshow__infoitem__leftwrapper">
-        <img
-          className="extendeddayssection__rangeshow__infoitem_icon"
-          src={icon}
-          alt=""
-        />
-        <h3>{dateFomrmatted}</h3>
-      </div>
-
-      <div className="extendeddayssection__rangeshow__infoitem__rightwrapper">
-        <div className="extendeddayssection__rangeshow__infoitem__rightwrapper__itemcontainer">
-          <h3>{chanceToRainData?.value}</h3>
+    <>
+      <motion.div
+        variants={infoitemAnimationVariants}
+        initial="initial"
+        whileInView="animate"
+        viewport={{
+          once: true,
+        }}
+        custom={i}
+        onClick={() => setShowMore(!showMore)}
+        className="extendeddayssection__rangeshow__infoitem">
+        <div className="extendeddayssection__rangeshow__infoitem__leftwrapper">
           <img
-            src={chanceToRainData?.icon}
+            className="extendeddayssection__rangeshow__infoitem_icon"
+            src={icon}
             alt=""
-            className="extendeddayssection__rangeshow__infoitem__rightwrapper__itemcontainer_icon"
           />
+          <h3>{dateFormatted}</h3>
         </div>
 
-        <div className="extendeddayssection__rangeshow__infoitem__rightwrapper__temperaturecontainer">
-          <div className="extendeddayssection__rangeshow__infoitem__rightwrapper__temperaturecontainer__item">
-            <h3 className="extendeddayssection__rangeshow__infoitem__rightwrapper__temperaturecontainer__item_text">
-              {minTempData?.value}
-            </h3>
+        <div className="extendeddayssection__rangeshow__infoitem__rightwrapper">
+          <div className="extendeddayssection__rangeshow__infoitem__rightwrapper__itemcontainer">
+            <h3>{chanceToRainData?.value}</h3>
             <img
-              src={minTempData?.icon}
+              src={chanceToRainData?.icon}
               alt=""
-              className="extendeddayssection__rangeshow__infoitem__rightwrapper__temperaturecontainer__item_icon"
+              className="extendeddayssection__rangeshow__infoitem__rightwrapper__itemcontainer_icon"
             />
           </div>
-          <div className="extendeddayssection__rangeshow__infoitem__rightwrapper__temperaturecontainer__item">
-            <h3 className="extendeddayssection__rangeshow__infoitem__rightwrapper__temperaturecontainer__item_text">
-              {maxTempData?.value}
-            </h3>
-            <img
-              src={maxTempData?.icon}
-              alt=""
-              className="extendeddayssection__rangeshow__infoitem__rightwrapper__temperaturecontainer__item_icon"
-            />
+
+          <div className="extendeddayssection__rangeshow__infoitem__rightwrapper__temperaturecontainer">
+            <div className="extendeddayssection__rangeshow__infoitem__rightwrapper__temperaturecontainer__item">
+              <h3 className="extendeddayssection__rangeshow__infoitem__rightwrapper__temperaturecontainer__item_text">
+                {minTempData?.value}
+              </h3>
+              <img
+                src={minTempData?.icon}
+                alt=""
+                className="extendeddayssection__rangeshow__infoitem__rightwrapper__temperaturecontainer__item_icon"
+              />
+            </div>
+            <div className="extendeddayssection__rangeshow__infoitem__rightwrapper__temperaturecontainer__item">
+              <h3 className="extendeddayssection__rangeshow__infoitem__rightwrapper__temperaturecontainer__item_text">
+                {maxTempData?.value}
+              </h3>
+              <img
+                src={maxTempData?.icon}
+                alt=""
+                className="extendeddayssection__rangeshow__infoitem__rightwrapper__temperaturecontainer__item_icon"
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+      <AnimatePresence mode="wait">
+        {showMore && (
+          <motion.div
+            onClick={() => setShowMore(!showMore)}
+            className="extendeddayssection__rangeshow__infoitem extendeddayssection__rangeshow__infoitem--displayed"
+            variants={showmoreVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit">
+            <div className="extendeddayssection__rangeshow__infoitem__leftwrapper extendeddayssection__rangeshow__infoitem__leftwrapper--showmore">
+              <h3>{weatherDetail}</h3>
+            </div>
+
+            <div className="extendeddayssection__rangeshow__infoitem__rightwrapper">
+              <div className="extendeddayssection__rangeshow__infoitem__rightwrapper__itemcontainer">
+                <h3> {windData?.value}</h3>
+
+                <img
+                  src={windData?.icon}
+                  alt=""
+                  className="extendeddayssection__rangeshow__infoitem__rightwrapper__temperaturecontainer__item_icon"
+                />
+              </div>
+              <div className="extendeddayssection__rangeshow__infoitem__rightwrapper__temperaturecontainer extendeddayssection__rangeshow__infoitem__rightwrapper__temperaturecontainer--showmore">
+                <div className="extendeddayssection__rangeshow__infoitem__rightwrapper__itemcontainer">
+                  <h3>{humidityData?.value}</h3>
+                  <img
+                    src={humidityData?.icon}
+                    className="extendeddayssection__rangeshow__infoitem__rightwrapper__temperaturecontainer__item_icon"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };

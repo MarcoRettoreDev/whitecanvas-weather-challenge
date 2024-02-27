@@ -14,7 +14,9 @@
   }
 
   @include b.breakpoint-up(large) {
-    max-width: 23.1875rem;
+    max-width: none;
+    margin-left: 0;
+    margin-right: auto;
   }
 
   &__input {

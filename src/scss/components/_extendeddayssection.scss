@@ -1,9 +1,9 @@
 @use "../globals/colors" as c;
+@use "../globals//breakpoints" as b;
 
 .extendeddayssection {
   padding: 2.5rem 0rem 0rem;
   color: c.$white;
-  margin: 0rem 1.5rem 0rem 0.8rem;
 
   &_title {
     padding-bottom: 2rem;
@@ -14,6 +14,11 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+
+    @include b.breakpoint-up(medium) {
+      max-width: 20rem;
+      margin: 0 auto;
+    }
 
     &_rangeoption {
       padding: 0.5rem 0.7rem;
@@ -40,9 +45,14 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      background: rgba($color: #000000, $alpha: 0.1);
+      background: rgba($color: #000000, $alpha: 0.2);
       border-radius: 0.3rem;
       padding: 0.5rem 0.3rem;
+      cursor: pointer;
+
+      &--displayed {
+        background: rgba($color: #000000, $alpha: 0.5);
+      }
 
       &__leftwrapper {
         display: flex;
@@ -86,12 +96,22 @@
               height: 1rem;
             }
           }
+
+          &--showmore {
+            justify-content: center;
+            min-width: 3.3rem;
+            gap: 0.5rem;
+          }
         }
       }
 
       &_icon {
-        width: 2rem;
-        height: 2rem;
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+
+      &__showmore {
+        background: #000;
       }
     }
   }
