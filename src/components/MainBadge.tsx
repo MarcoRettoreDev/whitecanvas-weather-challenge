@@ -20,11 +20,11 @@ export const MainBadge: FC = () => {
     ? format(new Date(currentWeather?.time), "k:mm - EEEE, d LLL ‘yy")
     : null;
 
+  if (isWeatherFetching) return null;
+
   return (
     <div className="mainbadge">
-      {isWeatherFetching ? (
-        <LoadingSpinner />
-      ) : weatherData ? (
+      {weatherData ? (
         <>
           <div className="mainbadge__degree">
             <h1 className="mainbadge__degree_text">

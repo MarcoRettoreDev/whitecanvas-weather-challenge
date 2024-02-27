@@ -17,13 +17,13 @@ export const DetailBar: FC = () => {
     weatherData?.current_weather.is_day
   );
 
+  if (isFetchingWeather) return null;
+
   return (
     <div className="detailbar">
       <InputSearchLocation />
 
-      {isFetchingWeather ? (
-        <LoadingSpinner />
-      ) : data ? (
+      {data ? (
         <>
           <h3 className="detailbar__title">Weather Details...</h3>
           <h3 className="detailbar__subtitle">{weatherObj.weatherDetail}</h3>

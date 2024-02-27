@@ -1,7 +1,7 @@
 import { FC } from "react";
 import "./scss/style.scss";
-import { CentralPanel } from "./components/CentralPanel";
+import { Grid } from "./components/Grid";
 
-const App: FC = () => <CentralPanel />;
+const App: FC = () => <Grid />;
 
 export default App;
