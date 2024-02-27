@@ -35,6 +35,8 @@ export const InputSearchLocation: FC = () => {
   return (
     <div className="inputsearchlocation">
       <input
+        aria-label="search"
+        tabIndex={1}
         className="inputsearchlocation__input"
         type="text"
         name=""

@@ -2,7 +2,6 @@ import { FC } from "react";
 import { useAppStore } from "../context/appStore";
 import { currentWeatherSelector } from "../context/selectors";
 import { format } from "date-fns";
-import { LoadingSpinner } from "./LoadingSpinner";
 import { decodiFyWeatherCode } from "../helpers/weatherHelper";
 
 export const MainBadge: FC = () => {

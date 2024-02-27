@@ -76,7 +76,6 @@ export const ExtendedDaysSection: FC = () => {
   };
 
   if (isFetchingData) return <LoadingSpinner />;
-  console.log(data);
 
   if (!data) return null;
 
@@ -84,8 +83,9 @@ export const ExtendedDaysSection: FC = () => {
     <div className="extendeddayssection">
       <h3 className="extendeddayssection_title">Extended forecast</h3>
       <div className="extendeddayssection__rangewrapper">
-        {selectOptions.map((dayopt) => (
+        {selectOptions.map((dayopt, i) => (
           <RangeOption
+            index={i}
             key={dayopt.id}
             value={dayopt.value}
             label={dayopt.label}
@@ -112,6 +112,7 @@ type TRangeOption = {
   label: string;
   selected: string;
   handleClick: (id: number) => void;
+  index: number;
 };
 
 const RangeOption: FC<TRangeOption> = ({
@@ -119,8 +120,16 @@ const RangeOption: FC<TRangeOption> = ({
   label,
   handleClick,
   selected,
+  index,
 }) => (
   <div
+    onKeyDown={(e) => {
+      if (e.key === "Enter") {
+        handleClick(value);
+      }
+    }}
+    tabIndex={index + 1}
+    aria-label={`extendforecast-${value}`}
     className={`extendeddayssection__rangewrapper_rangeoption ${selected}`}
     onClick={() => handleClick(value)}>
     {label}
@@ -159,13 +168,20 @@ const InfoItem: FC<TInfoItem> = ({ weatherItem, i }) => {
   return (
     <>
       <motion.div
+        tabIndex={i + 4}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            setShowMore(!showMore);
+          }
+        }}
         variants={infoitemAnimationVariants}
         initial="initial"
         whileInView="animate"
         viewport={{
           once: true,
         }}
-        custom={i}
+        // Maximum 10 index value to don't overextend animation
+        custom={i % 10}
         onClick={() => setShowMore(!showMore)}
         className="extendeddayssection__rangeshow__infoitem">
         <div className="extendeddayssection__rangeshow__infoitem__leftwrapper">

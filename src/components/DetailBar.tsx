@@ -3,7 +3,6 @@ import { FC } from "react";
 import { weatherCurrentDaySelector } from "../context/selectors";
 import { useAppStore } from "../context/appStore";
 import { InputSearchLocation } from "./InputSearchLocation";
-import { LoadingSpinner } from "./LoadingSpinner";
 import { decodiFyWeatherCode } from "../helpers/weatherHelper";
 import { EmptyDataMessage } from "./EmptyDataMessage";
 
