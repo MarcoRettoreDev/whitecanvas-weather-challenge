@@ -57,8 +57,10 @@ export const LocationSelector: FC = () => {
           {locationData && locationData.length > 0 ? (
             locationData.map((data, i) => (
               <div
-                // todo: add mouse hover set --selected modifier class
                 key={data.id}
+                onMouseEnter={() => {
+                  setSelectedItem(i);
+                }}
                 onClick={() => selectLocation(data.id)}
                 ref={i === 0 ? focusRef : null}
                 tabIndex={selectedItem === i ? 0 : -1}
