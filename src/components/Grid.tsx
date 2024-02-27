@@ -7,10 +7,12 @@ import { useAppStore } from "../context/appStore";
 import { decodiFyWeatherCode } from "../helpers/weatherHelper";
 import { ExtendedDaysSection } from "./ExtendedDaysSection";
 import { useAnimate, usePresence } from "framer-motion";
+import { DisplayFetchError } from "./DisplayFetchError";
 
 export const Grid: FC = () => {
   const weatherData = useAppStore((state) => state.weatherData);
   const isWeatherFetching = useAppStore((state) => state.isWeatherFetching);
+
   const isWeatherError = useAppStore((state) => state.isWeatherError);
   const weatherObj = decodiFyWeatherCode(
     weatherData?.current_weather.weathercode,
@@ -46,6 +48,7 @@ export const Grid: FC = () => {
       style={{ backgroundImage: `url(${weatherObj.backgroundImg})` }}>
       <main className="grid__main">
         <InputSearchLocation />
+        <DisplayFetchError />
         <LocationSelector />
         <MainBadge />
       </main>

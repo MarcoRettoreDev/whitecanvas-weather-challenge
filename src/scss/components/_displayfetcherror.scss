@@ -1,0 +1,65 @@
+@use "../globals/colors" as c;
+@use "../globals/breakpoints" as b;
+@use "../globals/index" as z;
+
+@mixin width-reponsive() {
+  @media only screen and (min-width: map-get(b.$breakpoint-up, small)) {
+    width: 80vw;
+    right: calc(50% - calc(80vw / 2));
+  }
+  @media only screen and (min-width: map-get(b.$breakpoint-up, medium)) {
+    width: 55vw;
+    right: calc(50% - calc(55vw / 2));
+  }
+  @media only screen and (min-width: map-get(b.$breakpoint-up, large)) {
+    width: 35vw;
+    right: calc(50% - calc(35vw / 2));
+    max-width: 35rem;
+  }
+}
+
+.displayfetcherror {
+  color: white;
+  @include width-reponsive();
+  background: rgba($color: black, $alpha: 0.7);
+  backdrop-filter: blur(5px);
+
+  z-index: z.$level5;
+  text-align: center;
+  position: fixed;
+  padding: 0.5rem 0.25rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+
+    &_title {
+      text-align: left;
+      font-weight: 400;
+    }
+
+    &_description {
+      text-align: left;
+      font-weight: 300;
+    }
+  }
+  &_icon {
+    width: 1.75rem;
+    height: 1.75rem;
+
+    @include b.breakpoint-up(large) {
+      // justify-content: space-around;
+      width: 2.2rem;
+      height: 2.2rem;
+    }
+  }
+}

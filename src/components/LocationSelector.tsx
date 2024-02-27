@@ -9,6 +9,8 @@ export const LocationSelector: FC = () => {
   const toggleOpenSelector = useAppStore((state) => state.toggleOpenSelector);
   const selectLocation = useAppStore((state) => state.selectLocation);
   const isLocationFetching = useAppStore((state) => state.isLocationFetching);
+  const isLocationError = useAppStore((state) => state.isLocationError);
+
   const isSelectorOpen = useAppStore((state) => state.openSelector);
   const [selectedItem, setSelectedItem] = useState<number | null>(null); // Track the index of the selected item
 
@@ -35,6 +37,12 @@ export const LocationSelector: FC = () => {
       toggleOpenSelector();
     }
   };
+
+  useEffect(() => {
+    if (isLocationError) {
+      toggleOpenSelector();
+    }
+  }, [isLocationError]);
 
   if (!isSelectorOpen) return null;
 

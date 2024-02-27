@@ -7,8 +7,6 @@ import usePreviousProps from "../hooks/usePreviousProps";
 export const InputSearchLocation: FC = () => {
   const toggleOpenSelector = useAppStore((state) => state.toggleOpenSelector);
   const fetchLocation = useAppStore((state) => state.fetchLocation);
-  const isLocationError = useAppStore((state) => state.isLocationError);
-  const isLocationFetching = useAppStore((state) => state.isLocationFetching);
 
   const [searchedText, setSearchedText] = useState("");
   const previousValue = usePreviousProps(searchedText);
@@ -33,16 +31,6 @@ export const InputSearchLocation: FC = () => {
       fetchLocation({ queryCity: searchedText });
     }
   };
-
-  if (isLocationFetching) {
-    //todo: loading component
-    console.log("FETCHING");
-  }
-
-  if (isLocationError) {
-    //todo: display error component
-    console.log("ERRRRORRR");
-  }
 
   return (
     <div className="inputsearchlocation">
