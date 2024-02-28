@@ -5,7 +5,7 @@
   height: 100%;
   border-bottom: solid rgba($color: c.$white, $alpha: 1) 1px;
   color: c.$white;
-  margin: 0rem 0.2rem;
+  margin-left: 0.2rem;
 
   @include b.breakpoint-up(medium) {
     padding: 1rem 0rem;
@@ -61,15 +61,15 @@
     padding: 0.9rem 0rem;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.8rem;
+    gap: 1.85rem;
 
     @include b.breakpoint-up(medium) {
-      padding: 0.9rem 0.5rem 0rem;
-      gap: 1.85rem;
+      padding: 0.9rem 0.2rem 0rem 0.5rem;
+      gap: 1.87rem;
     }
 
     @include b.breakpoint-up(large) {
-      padding: 2rem 1.1rem 0rem 0rem;
+      padding: 2rem 0.75rem 0rem 0rem;
       gap: 1.8rem;
     }
 
@@ -91,14 +91,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.9rem;
+        gap: 0.95rem;
+
+        @include b.breakpoint-up(medium) {
+          gap: 1rem;
+        }
+
+        @include b.breakpoint-up(large) {
+          gap: 1.2rem;
+        }
 
         &_icon {
           width: 1.3rem;
           height: 1.3rem;
-          background-repeat: no-repeat;
-          background-position: right;
-          background-size: contain;
 
           @include b.breakpoint-up(medium) {
             width: 1.5625rem;
