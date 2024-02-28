@@ -16,6 +16,8 @@ export const DetailBar: FC = () => {
     weatherData?.current_weather.is_day
   );
 
+  console.log(data);
+
   if (isFetchingWeather) return null;
 
   return (
@@ -51,6 +53,8 @@ interface DetailStats {
 }
 
 const DetailStats: FC<DetailStats> = ({ title, value, icon }) => {
+  console.log("icon value: ", icon);
+
   return (
     <div className="detailbar__detailstats__item">
       <h3 className="detailbar__detailstats__item_title">{title}</h3>
@@ -58,11 +62,10 @@ const DetailStats: FC<DetailStats> = ({ title, value, icon }) => {
         <p className="detailbar__detailstats__item__rightsection_text">
           {value}
         </p>
-        {icon ? (
-          <div
-            className="detailbar__detailstats__item__rightsection_icon"
-            style={{ backgroundImage: `url(${icon})` }}></div>
-        ) : null}
+        <div
+          className="detailbar__detailstats__item__rightsection_icon"
+          style={{ backgroundImage: `url(${icon})` }}
+        />
       </div>
     </div>
   );
