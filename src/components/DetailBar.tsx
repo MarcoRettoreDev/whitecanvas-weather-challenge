@@ -46,7 +46,7 @@ export const DetailBar: FC = () => {
 
 interface DetailStats {
   title: string;
-  value: number | string;
+  value: number | string | undefined;
   icon: string | null;
 }
 
