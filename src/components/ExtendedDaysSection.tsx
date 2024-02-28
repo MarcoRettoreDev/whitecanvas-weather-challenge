@@ -6,9 +6,9 @@ import {
   formatCurrentWeatherObject,
 } from "../helpers/weatherHelper";
 import { LoadingSpinner } from "./LoadingSpinner";
-import { format } from "date-fns";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import { WeatherData } from "../features/weather/weatherTypes";
+import dayjs from "dayjs";
 
 const selectOptions = [
   {
@@ -163,7 +163,7 @@ const InfoItem: FC<TInfoItem> = ({ weatherItem, i }) => {
   const minTempData = formatCurrentWeatherObject("minTemp", minTemp);
   const humidityData = formatCurrentWeatherObject("humidity", humidity);
   const windData = formatCurrentWeatherObject("wind", wind);
-  const dateFormatted = format(new Date(dayNumber), "EEEE d, MMM");
+  const dateFormatted = dayjs(dayNumber).format("dddd D, MMM");
 
   return (
     <>

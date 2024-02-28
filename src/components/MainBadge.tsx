@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { useAppStore } from "../context/appStore";
 import { currentWeatherSelector } from "../context/selectors";
-import { format } from "date-fns";
 import { decodiFyWeatherCode } from "../helpers/weatherHelper";
+import dayjs from "dayjs";
 
 export const MainBadge: FC = () => {
   const selectedLocation = useAppStore((state) => state.selectedLocation);
@@ -15,9 +15,9 @@ export const MainBadge: FC = () => {
     weatherData?.current_weather.is_day
   );
 
-  const dateFormatted = currentWeather?.time
-    ? format(new Date(currentWeather?.time), "k:mm - EEEE, d LLL ‘yy")
-    : null;
+  const dateFormatted = dayjs(currentWeather?.time).format(
+    "H:mm - dddd, D MMM ‘YY"
+  );
 
   if (isWeatherFetching) return null;
 
