@@ -4,6 +4,27 @@ import humidityIcon from "../assets/svg/humidity.svg";
 import cloudIcon from "../assets/svg/cloudy.svg";
 import windIcon from "../assets/svg/wind.svg";
 
+import snowWeatherIcon from "../assets/svg/Snow.svg";
+import snowWeatherBackground from "../assets/images/snow.png";
+
+import cloudyIcon from "../assets/svg/Broken-Cloudy.svg";
+import cloudyDayBackground from "../assets/images/cloudy_day.png";
+import cloudyNightBackground from "../assets/images/cloudy_night.png";
+
+import mistIcon from "../assets/svg/mist.svg";
+import mistBackground from "../assets/images/mist.png";
+
+import thunderstormIcon from "../assets/svg/Thunderstorm.svg";
+import thunderstromBackground from "../assets/images/thunderstrom.png";
+
+import rainIcon from "../assets/svg/Shower-Rain&Sun.svg";
+import rainBackground from "../assets/images/rain.png";
+
+import clearDayIcon from "../assets/svg/Sunny.svg";
+import clearNightIcon from "../assets/svg/moon.svg";
+import clearDayBackground from "../assets/images/clear.png";
+import clearNightBackground from "../assets/images/night.png";
+
 export const formatCurrentWeatherObject = (
   key: string,
   value: string | number | undefined
@@ -43,27 +64,6 @@ export const formatCurrentWeatherObject = (
       return null;
   }
 };
-
-import snowWeatherIcon from "../assets/svg/Snow.svg";
-import snowWeatherBackground from "../assets/images/snow.png";
-
-import cloudyIcon from "../assets/svg/Broken-Cloudy.svg";
-import cloudyDayBackground from "../assets/images/cloudy_day.png";
-import cloudyNightBackground from "../assets/images/cloudy_night.png";
-
-import mistIcon from "../assets/svg/mist.svg";
-import mistBackground from "../assets/images/mist.png";
-
-import thunderstormIcon from "../assets/svg/Thunderstorm.svg";
-import thunderstromBackground from "../assets/images/thunderstrom.png";
-
-import rainIcon from "../assets/svg/Shower-Rain&Sun.svg";
-import rainBackground from "../assets/images/rain.png";
-
-import clearDayIcon from "../assets/svg/Sunny.svg";
-import clearNightIcon from "../assets/svg/moon.svg";
-import clearDayBackground from "../assets/images/clear.png";
-import clearNightBackground from "../assets/images/night.png";
 
 type returnObj = {
   backgroundImg: string;
@@ -164,3 +164,14 @@ export const decodiFyWeatherCode = (
 
   return baseObj;
 };
+
+export const backgroundImagesSrc: string[] = [
+  snowWeatherBackground,
+  cloudyDayBackground,
+  cloudyNightBackground,
+  mistBackground,
+  thunderstromBackground,
+  rainBackground,
+  clearDayBackground,
+  clearNightBackground,
+];
