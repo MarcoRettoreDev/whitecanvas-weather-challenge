@@ -100,7 +100,7 @@ export const ExtendedDaysSection: FC = () => {
       </div>
       <div className="extendeddayssection__rangeshow">
         {data?.map((item, index) => (
-          <InfoItem weatherItem={item} i={index} />
+          <InfoItem key={index} weatherItem={item} i={index} />
         ))}
       </div>
     </div>

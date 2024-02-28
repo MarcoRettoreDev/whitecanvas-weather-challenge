@@ -76,7 +76,6 @@ export const weatherDaysDataSelector = (
       slicedDailyData[key] = slicedDailyData[key]?.slice(1, limitDayIndex + 1);
     }
   }
-  console.log(slicedDailyData, limitDayIndex + 1);
 
   for (let i = 0; i < limitDayIndex; i++) {
     //@ts-expect-error we're going to fill the array in the following lines
