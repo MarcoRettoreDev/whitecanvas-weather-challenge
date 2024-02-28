@@ -13,17 +13,17 @@
   }
 
   &__degree {
-    width: 5.375rem;
-    height: 4.6875rem;
+    min-width: 5.375rem;
+    min-height: 4.6875rem;
 
     @include b.breakpoint-up(medium) {
-      width: 10.0625rem;
-      height: 8.8125rem;
+      min-width: 10.0625rem;
+      min-height: 8.8125rem;
     }
 
     @include b.breakpoint-up(large) {
-      width: 12rem;
-      height: 10.5rem;
+      min-width: 12rem;
+      min-height: 10.5rem;
     }
 
     &_text {
