@@ -2,7 +2,7 @@
 @use "../globals/breakpoints" as b;
 
 .detailbar {
-  height: 100%;
+  min-height: 100%;
   border-bottom: solid rgba($color: c.$white, $alpha: 1) 1px;
   color: c.$white;
   margin-left: 0.2rem;
@@ -13,6 +13,7 @@
   }
 
   @include b.breakpoint-up(large) {
+    min-height: auto;
     padding: 0rem 0rem 5rem;
     margin: 0rem 1.5rem 0rem 0.7rem;
     height: auto;
