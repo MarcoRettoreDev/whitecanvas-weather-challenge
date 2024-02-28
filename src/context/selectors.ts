@@ -1,4 +1,8 @@
-import { TodayWeather, WeatherData } from "../features/weather/weatherTypes";
+import {
+  Daily,
+  TodayWeather,
+  WeatherData,
+} from "../features/weather/weatherTypes";
 import { formatCurrentWeatherObject } from "../helpers/weatherHelper";
 import { TAppStore } from "./appStore";
 
@@ -15,6 +19,7 @@ export const weatherCurrentDaySelector = (
   const data = weatherDaysDataSelector(state, 1);
   if (!data) return null;
   const formattedData: TodayWeather[] = [];
+
   Object.entries(data[0]).forEach(([key, value]) => {
     const obj = formatCurrentWeatherObject(key, value);
     if (obj !== null) {
@@ -34,72 +39,91 @@ export const weatherDaysDataSelector = (
   daysQuantity: number
 ): WeatherData[] | null => {
   if (!state.weatherData) return null;
-  // Todo: trim first day of the array
 
   const windSpeedSufix = state.weatherData?.daily_units.windspeed_10m_max;
 
   const arrayWithDataFormatted: WeatherData[] = [];
 
-  state.weatherData?.daily.time.forEach((time, i) => {
-    if (i < daysQuantity) {
-      const dayObj = {};
-      //@ts-expect-error TODO: type should be coming quickly
-      dayObj.dayNumber = time;
-      //@ts-expect-error TODO: type should be coming quickly
-      arrayWithDataFormatted.push(dayObj);
+  if (daysQuantity === 1) {
+    arrayWithDataFormatted.push({
+      dayNumber: state.weatherData?.daily.time[0],
+      maxTemp: Math.round(state.weatherData?.daily.apparent_temperature_max[0]),
+      minTemp: Math.round(state.weatherData?.daily.apparent_temperature_min[0]),
+      humidity:
+        state.weatherData?.daily.precipitation_probability_mean[0]?.toString() ??
+        0 + "%",
+      chanceToRain:
+        state.weatherData?.daily.uv_index_max[0]?.toFixed(0) ?? 0 + "%",
+      wind: `${state.weatherData?.daily.windspeed_10m_max[0].toString()}${windSpeedSufix}`,
+      weathercode: state.weatherData?.daily.weathercode[0],
+    });
+
+    return arrayWithDataFormatted;
+  }
+
+  // We do this to prevent index overflow
+  const limitDayIndex = daysQuantity % 16;
+
+  const slicedDailyData: Daily = {
+    ...state.weatherData.daily,
+  };
+
+  for (const key in slicedDailyData) {
+    if (
+      Object.prototype.hasOwnProperty.call(slicedDailyData, key) &&
+      Array.isArray(slicedDailyData[key])
+    ) {
+      slicedDailyData[key] = slicedDailyData[key]?.slice(1, limitDayIndex + 1);
+    }
+  }
+  console.log(slicedDailyData, limitDayIndex + 1);
+
+  for (let i = 0; i < limitDayIndex; i++) {
+    //@ts-expect-error we're going to fill the array in the following lines
+    arrayWithDataFormatted[i] = {};
+  }
+
+  slicedDailyData.time.forEach((time, i) => {
+    if (i <= limitDayIndex) {
+      arrayWithDataFormatted[i].dayNumber = time;
     }
   });
 
-  state.weatherData?.daily.apparent_temperature_max.forEach((max, i) => {
-    if (i < daysQuantity) {
+  slicedDailyData.apparent_temperature_max.forEach((max, i) => {
+    if (i <= limitDayIndex) {
       arrayWithDataFormatted[i].maxTemp = Math.round(max);
     }
   });
 
-  state.weatherData?.daily.apparent_temperature_min.forEach((min, i) => {
-    if (i < daysQuantity) {
+  slicedDailyData.apparent_temperature_min.forEach((min, i) => {
+    if (i <= limitDayIndex) {
       arrayWithDataFormatted[i].minTemp = Math.round(min);
     }
   });
 
-  state.weatherData?.daily.precipitation_probability_mean.forEach((hum, i) => {
-    if (i < daysQuantity) {
+  slicedDailyData.precipitation_probability_mean.forEach((hum, i) => {
+    if (i <= limitDayIndex) {
       arrayWithDataFormatted[i].humidity = hum?.toString() ?? 0 + "%";
     }
   });
 
-  state.weatherData?.daily.uv_index_max.forEach((uv, i) => {
-    if (i < daysQuantity) {
+  slicedDailyData.uv_index_max.forEach((uv, i) => {
+    if (i <= limitDayIndex) {
       arrayWithDataFormatted[i].chanceToRain = uv?.toFixed(0) ?? 0 + "%";
     }
   });
 
-  state.weatherData?.daily.windspeed_10m_max.forEach((wind, i) => {
-    if (i < daysQuantity) {
+  slicedDailyData.windspeed_10m_max.forEach((wind, i) => {
+    if (i <= limitDayIndex) {
       arrayWithDataFormatted[i].wind = `${wind.toString()}${windSpeedSufix}`;
     }
   });
 
-  state.weatherData?.daily.weathercode.forEach((code, i) => {
-    if (i < daysQuantity) {
+  slicedDailyData.weathercode.forEach((code, i) => {
+    if (i <= limitDayIndex) {
       arrayWithDataFormatted[i].weathercode = code;
     }
   });
 
-  const returnArray = arrayWithDataFormatted.map((day, i) => {
-    if (i === 0)
-      return {
-        ...day,
-        averageTemp: state?.weatherData?.current_weather.temperature,
-      };
-    else {
-      return {
-        ...day,
-        averageTemp: Math.round(((day.maxTemp + day.minTemp) / 2) * 10) / 10,
-      };
-    }
-  });
-
-  //@ts-expect-error TODO: type should be coming quickly
-  return returnArray;
+  return arrayWithDataFormatted;
 };

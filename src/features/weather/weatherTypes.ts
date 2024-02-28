@@ -42,6 +42,12 @@ export interface Daily {
   precipitation_probability_mean: Array<number | null>;
   weathercode: number[];
   windspeed_10m_max: number[];
+  [key: string]:
+    | string
+    | number[]
+    | Array<number | null>
+    | string[]
+    | undefined;
 }
 
 export interface DailyUnits {
@@ -56,17 +62,17 @@ export interface DailyUnits {
 
 export interface WeatherData {
   dayNumber: string;
-  averageTemp: string;
   chanceToRain: string;
   minTemp: number;
   maxTemp: number;
   wind: string;
   weathercode: number;
   humidity: string;
+  [key: string]: string | number | undefined;
 }
 
 export interface TodayWeather {
   title: string;
-  value: string | number;
+  value: string | number | undefined;
   icon: string;
 }

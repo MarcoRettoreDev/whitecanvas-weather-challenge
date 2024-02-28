@@ -6,7 +6,7 @@ import windIcon from "../assets/svg/wind.svg";
 
 export const formatCurrentWeatherObject = (
   key: string,
-  value: string | number
+  value: string | number | undefined
 ) => {
   switch (key) {
     case "maxTemp":
