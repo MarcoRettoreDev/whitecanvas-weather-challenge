@@ -25,7 +25,9 @@ export const InputSearchLocation: FC = () => {
   };
 
   const dispatchQuery = () => {
-    toggleOpenSelector();
+    if (searchedText.length >= 1) {
+      toggleOpenSelector();
+    }
 
     if (hasInputChanged) {
       fetchLocation({ queryCity: searchedText });
