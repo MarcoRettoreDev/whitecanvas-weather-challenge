@@ -6,7 +6,7 @@ import usePreviousProps from "../hooks/usePreviousProps";
 
 export const InputSearchLocation: FC = () => {
   const toggleOpenSelector = useAppStore((state) => state.toggleOpenSelector);
-  const fetchLocation = useAppStore((state) => state.fetchLocation);
+  const fetchLocationCity = useAppStore((state) => state.fetchLocationCity);
 
   const [searchedText, setSearchedText] = useState("");
   const previousValue = usePreviousProps(searchedText);
@@ -30,7 +30,7 @@ export const InputSearchLocation: FC = () => {
     }
 
     if (hasInputChanged) {
-      fetchLocation({ queryCity: searchedText });
+      fetchLocationCity({ queryCity: searchedText });
     }
   };
 
