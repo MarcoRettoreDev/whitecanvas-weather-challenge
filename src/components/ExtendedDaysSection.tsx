@@ -180,8 +180,7 @@ const InfoItem: FC<TInfoItem> = ({ weatherItem, i }) => {
         viewport={{
           once: true,
         }}
-        // Maximum 10 index value to don't overextend animation
-        custom={i % 10}
+        custom={i}
         onClick={() => setShowMore(!showMore)}
         className="extendeddayssection__rangeshow__infoitem">
         <div className="extendeddayssection__rangeshow__infoitem__leftwrapper">
