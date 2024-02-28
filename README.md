@@ -1,30 +1,27 @@
-# React + TypeScript + Vite
+# White Canvas - Challenge Rettore Mattes Marco A.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Deploy instructions
 
-Currently, two official plugins are available:
+This appplication is auto deployable on Vercel with every push made into main branch,
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## How to RUN the proyect (development):
 
-## Expanding the ESLint configuration
+- Clone repository
+- Copy .env.exmaple into .env
+- Fill VITE_API_LOCATION_KEY variable in the .env with your personal key generated on: https://openweathermap.org/api (you must create an account)
+- run: npm install
+- run: npm run dev
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+pd: please use develop branch or create other branch while adding features/improvements/bug fixes
 
-- Configure the top-level `parserOptions` property like this:
+## How to BUILD the proyect:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- run: npm run build (with typescript verification)
+- compiled project is stored on /dist folder
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Adiotional features:
+
+- Request user Localization and set the weather automatically
+- Preview next 5/10/15 days weather
+- Navigation with keyboard/tab
+- Change application layout base on current weather condition of the location selected
